@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', function () {
   if (navbar) {
     window.addEventListener('scroll', function () {
       navbar.style.background = window.scrollY > 60
-        ? 'rgba(10,10,10,0.98)'
-        : 'rgba(10,10,10,0.88)';
+        ? 'rgba(28,21,16,0.98)'
+        : 'rgba(28,21,16,0.88)';
     }, { passive: true });
   }
 
@@ -111,5 +111,66 @@ document.addEventListener('DOMContentLoaded', function () {
       this.style.paddingLeft = '';
     });
   });
+
+  /* --- Hero card shuffle --- */
+  var heroBusinesses = [
+    { niche: 'Clinic · Dubai Marina',   name: 'Prime Care<br/>Clinic',       v1: '+220%', l1: 'Bookings',     v2: '4.9★', l2: 'Google' },
+    { niche: 'Salon · JBR',             name: 'Luxe<br/>Studio',              v1: '+180%', l1: 'Walk-ins',     v2: '4.8★', l2: 'Google' },
+    { niche: 'Restaurant · DIFC',       name: 'The Table',                    v1: '+150%', l1: 'Reservations', v2: '4.9★', l2: 'Google' },
+    { niche: 'Gym · Business Bay',      name: 'Iron Peak<br/>Fitness',        v1: '+200%', l1: 'Members',      v2: '4.7★', l2: 'Google' },
+    { niche: 'Barbershop · Deira',      name: 'Kings Cut<br/>Barber',         v1: '+190%', l1: 'Bookings',     v2: '5.0★', l2: 'Google' },
+    { niche: 'Spa · Palm Jumeirah',     name: 'Serenity<br/>Spa',             v1: '+240%', l1: 'Reservations', v2: '4.8★', l2: 'Google' },
+    { niche: 'Law Firm · Downtown',     name: 'Al-Rashid<br/>Legal',          v1: '+160%', l1: 'Leads',        v2: '4.9★', l2: 'Google' },
+    { niche: 'Dentist · Jumeirah',      name: 'SmileFirst<br/>Dental',        v1: '+130%', l1: 'Appointments', v2: '4.9★', l2: 'Google' },
+    { niche: 'Café · City Walk',   name: 'Brew &amp;<br/>Bloom',         v1: '+170%', l1: 'Orders',       v2: '4.8★', l2: 'Google' },
+    { niche: 'Plumber · Mirdif',        name: 'FastFix<br/>Plumbing',         v1: '+160%', l1: 'Calls',        v2: '4.7★', l2: 'Google' },
+    { niche: 'Photographer · JLT',      name: 'FrameIt<br/>Studio',           v1: '+210%', l1: 'Enquiries',    v2: '5.0★', l2: 'Google' },
+    { niche: 'Auto Shop · Al Quoz',     name: 'DriveOn<br/>Garage',           v1: '+140%', l1: 'Bookings',     v2: '4.8★', l2: 'Google' },
+  ];
+  var bizIdx = 0;
+  var card1 = document.querySelector('.hcard-1');
+  var card2 = document.querySelector('.hcard-2');
+  var card3 = document.querySelector('.hcard-3');
+  if (card1) {
+    var niches = [
+      card1.querySelector('.hcard-niche'),
+      card2 ? card2.querySelector('.hcard-niche') : null,
+      card3 ? card3.querySelector('.hcard-niche') : null
+    ];
+    var titles = [
+      card1.querySelector('.hcard-title'),
+      card2 ? card2.querySelector('.hcard-title') : null,
+      card3 ? card3.querySelector('.hcard-title') : null
+    ];
+    var stats = card1.querySelectorAll('.hcard-stats div');
+
+    setInterval(function () {
+      bizIdx = (bizIdx + 1) % heroBusinesses.length;
+      var b0 = heroBusinesses[bizIdx];
+      var b1 = heroBusinesses[(bizIdx + 1) % heroBusinesses.length];
+      var b2 = heroBusinesses[(bizIdx + 2) % heroBusinesses.length];
+
+      card1.classList.add('card-exit');
+
+      setTimeout(function () {
+        if (niches[0]) niches[0].textContent = b0.niche;
+        if (titles[0]) titles[0].innerHTML  = b0.name;
+        if (stats[0])  { stats[0].querySelector('span').textContent = b0.v1; stats[0].querySelector('small').textContent = b0.l1; }
+        if (stats[1])  { stats[1].querySelector('span').textContent = b0.v2; stats[1].querySelector('small').textContent = b0.l2; }
+        if (niches[1]) niches[1].textContent = b1.niche;
+        if (titles[1]) titles[1].innerHTML  = b1.name;
+        if (niches[2]) niches[2].textContent = b2.niche;
+        if (titles[2]) titles[2].innerHTML  = b2.name;
+
+        card1.classList.remove('card-exit');
+        card1.classList.add('card-enter');
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            card1.classList.remove('card-enter');
+          });
+        });
+      }, 400);
+    }, 3200);
+  }
 
 });
