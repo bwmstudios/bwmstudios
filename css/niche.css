@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    niche.css — Shared styles for niche pages
    Salon/Barbershop page + Coming Soon page
    ============================================================ */
@@ -21,7 +21,7 @@
   filter: blur(90px); opacity: 0.15;
 }
 .nh-orb1 { width: 600px; height: 600px; background: var(--amber); top: -150px; right: -100px; }
-.nh-orb2 { width: 300px; height: 300px; background: #3a7a50; bottom: 10%; left: -80px; }
+.nh-orb2 { width: 300px; height: 300px; background: #16588e; bottom: 10%; left: -80px; }
 .nh-grid {
   position: absolute; inset: 0;
   background-image:
@@ -90,13 +90,13 @@
 .nh-preview-screen { padding: 0; }
 .nh-prev-hero {
   padding: 2rem;
-  background: linear-gradient(135deg, #150e02, #3d2a08, #150e02);
+  background: linear-gradient(135deg, #08111D, #0D1A2E, #08111D);
   position: relative; overflow: hidden;
 }
 .nh-prev-hero::before {
   content: '✂';
   position: absolute; top: 0.5rem; right: 1rem;
-  font-size: 5rem; color: rgba(245,166,35,0.06);
+  font-size: 5rem; color: rgba(129,196,255,0.06);
   pointer-events: none; line-height: 1;
 }
 .nh-prev-tag {
@@ -110,7 +110,7 @@
 }
 .nh-prev-cta {
   display: inline-block;
-  background: var(--amber); color: #0A0A0A;
+  background: var(--amber); color: #16588e;
   font-family: var(--font-h); font-size: 0.65rem; font-weight: 800;
   letter-spacing: 0.1em; text-transform: uppercase;
   padding: 0.45rem 1rem;
@@ -159,7 +159,7 @@
 .solution-banner {
   display: flex; justify-content: space-between; align-items: center;
   gap: 2rem; padding: 2rem 2.5rem;
-  background: linear-gradient(135deg, #161005, #1e1508);
+  background: linear-gradient(135deg, #080E1C, #0D1A2E);
   border: 1px solid var(--amber-bd); flex-wrap: wrap;
 }
 .sb-left h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
@@ -198,18 +198,18 @@
 }
 .salon-pkg:hover { background: var(--s2); }
 .salon-pkg-featured {
-  background: #161005 !important;
+  background: #080E1C !important;
   border-top: 2px solid var(--amber);
 }
-.salon-pkg-featured:hover { background: #1c1508 !important; }
-.salon-pkg-premium { border-top: 2px solid rgba(245,166,35,0.4); }
+.salon-pkg-featured:hover { background: #0A1422 !important; }
+.salon-pkg-premium { border-top: 2px solid rgba(129,196,255,0.4); }
 .salon-pkg-retainer {
   background: rgba(255,255,255,0.015) !important;
   border: 1px dashed rgba(255,255,255,0.1);
 }
 .spkg-popular {
   position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
-  background: var(--amber); color: #0A0A0A;
+  background: var(--amber); color: #16588e;
   font-family: var(--font-h); font-size: 0.58rem; font-weight: 800;
   letter-spacing: 0.15em; text-transform: uppercase;
   padding: 0.25rem 1rem; white-space: nowrap;
@@ -294,16 +294,16 @@
 }
 .spkg-cta:hover { border-color: var(--amber); color: var(--amber); background: var(--amber-bg); }
 .spkg-cta-featured {
-  background: var(--amber); color: #0A0A0A; border-color: var(--amber);
+  background: var(--amber); color: #16588e; border-color: var(--amber);
 }
-.spkg-cta-featured:hover { background: var(--amber2); border-color: var(--amber2); color: #0A0A0A; }
+.spkg-cta-featured:hover { background: var(--amber2); border-color: var(--amber2); color: #16588e; }
 .spkg-cta-premium { border-color: var(--amber-bd); color: var(--amber); }
-.spkg-cta-premium:hover { background: var(--amber); color: #0A0A0A; border-color: var(--amber); }
+.spkg-cta-premium:hover { background: var(--amber); color: #16588e; border-color: var(--amber); }
 
 .pkg-note-banner {
   display: flex; align-items: flex-start; gap: 1rem;
   padding: 1.5rem 2rem;
-  background: rgba(245,166,35,0.05);
+  background: rgba(129,196,255,0.05);
   border: 1px solid var(--amber-bd);
 }
 .pkg-note-banner span { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
@@ -370,7 +370,7 @@
 .anchor-banner {
   display: flex; align-items: center; gap: 2.5rem;
   padding: 2.2rem 3rem;
-  background: linear-gradient(135deg, rgba(245,166,35,0.06), rgba(245,166,35,0.02));
+  background: linear-gradient(135deg, rgba(129,196,255,0.06), rgba(129,196,255,0.02));
   border: 1px solid var(--amber-bd);
   margin-bottom: 4rem; flex-wrap: wrap;
 }
@@ -417,16 +417,16 @@
 .spkg-free {
   display: inline-flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
   font-size: 0.84rem; color: var(--t2);
-  background: rgba(82,224,124,0.06); border: 1px solid rgba(82,224,124,0.18);
+  background: rgba(231,34,46,0.06); border: 1px solid rgba(231,34,46,0.18);
   padding: 0.6rem 1rem; margin-bottom: 1.5rem; line-height: 1.6;
 }
 .spkg-free-featured {
-  background: rgba(245,166,35,0.08);
+  background: rgba(129,196,255,0.08);
   border-color: var(--amber-bd);
 }
 .free-badge {
   font-family: var(--font-h); font-size: 0.58rem; font-weight: 800;
-  letter-spacing: 0.12em; background: var(--green); color: #0A0A0A;
+  letter-spacing: 0.12em; background: var(--green); color: #16588e;
   padding: 0.15rem 0.45rem; flex-shrink: 0;
 }
 .spkg-free-featured .free-badge { background: var(--amber); }
@@ -453,13 +453,13 @@
 }
 .choice-item:hover { background: var(--s2); }
 .choice-item-rec {
-  background: #161005;
+  background: #080E1C;
   border-top: 2px solid var(--amber);
 }
-.choice-item-rec:hover { background: #1c1508; }
+.choice-item-rec:hover { background: #0A1422; }
 .choice-badge {
   position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
-  background: var(--amber); color: #0A0A0A;
+  background: var(--amber); color: #16588e;
   font-family: var(--font-h); font-size: 0.55rem; font-weight: 800;
   letter-spacing: 0.15em; text-transform: uppercase; padding: 0.2rem 0.8rem;
   white-space: nowrap;
@@ -490,7 +490,7 @@
 .cs-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 .cs-orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.12; }
 .cs-orb1 { width: 500px; height: 500px; background: var(--amber); top: -100px; left: -100px; }
-.cs-orb2 { width: 400px; height: 400px; background: #1a4a6a; bottom: 0; right: -50px; }
+.cs-orb2 { width: 400px; height: 400px; background: #16588e; bottom: 0; right: -50px; }
 .cs-grid {
   position: absolute; inset: 0;
   background-image:
@@ -535,7 +535,7 @@
   text-align: center; transition: background 0.2s;
 }
 .cs-niche-card:hover { background: var(--s2); }
-.cs-active { background: #161005 !important; border-top: 2px solid var(--amber); }
+.cs-active { background: #080E1C !important; border-top: 2px solid var(--amber); }
 .csn-icon { font-size: 1.5rem; margin-bottom: 0.6rem; }
 .csn-name {
   font-family: var(--font-h); font-size: 0.72rem; font-weight: 700;
