@@ -609,6 +609,18 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 4
 }
 .wa-float:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.4); }
 
+/* Instagram float */
+.ig-float {
+  position: fixed; bottom: 5.5rem; right: 2rem; z-index: 900;
+  display: flex; align-items: center; gap: 0.6rem;
+  background: linear-gradient(135deg, #833ab4, #c13584, #fd1d1d);
+  color: white;
+  padding: 0.7rem 1.2rem; font-family: var(--font-h); font-size: 0.72rem; font-weight: 700;
+  box-shadow: 0 4px 20px rgba(193,53,132,0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.ig-float:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(193,53,132,0.5); }
+
 /* ============================================================ RESPONSIVE */
 @media(max-width:1100px) {
   .hero { grid-template-columns: 1fr; min-height: auto; padding: 7rem 2rem 4rem; gap: 4rem; }
@@ -643,6 +655,8 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 4
   .footer-bottom { flex-direction: column; text-align: center; }
   .wa-float span { display: none; }
   .wa-float { padding: 0.85rem; border-radius: 50%; }
+  .ig-float span { display: none; }
+  .ig-float { padding: 0.85rem; border-radius: 50%; }
 }
 
 /* ============================================================
