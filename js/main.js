@@ -172,20 +172,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* --- Hero card shuffle --- */
-  var heroBusinesses = [
-    { niche: 'Clinic · Dubai Marina',   name: 'Prime Care<br/>Clinic',       v1: '+220%', l1: 'Bookings',     v2: '4.9★', l2: 'Google' },
-    { niche: 'Salon · JBR',             name: 'Luxe<br/>Studio',              v1: '+180%', l1: 'Walk-ins',     v2: '4.8★', l2: 'Google' },
-    { niche: 'Restaurant · DIFC',       name: 'The Table',                    v1: '+150%', l1: 'Reservations', v2: '4.9★', l2: 'Google' },
-    { niche: 'Gym · Business Bay',      name: 'Iron Peak<br/>Fitness',        v1: '+200%', l1: 'Members',      v2: '4.7★', l2: 'Google' },
-    { niche: 'Barbershop · Deira',      name: 'Kings Cut<br/>Barber',         v1: '+190%', l1: 'Bookings',     v2: '5.0★', l2: 'Google' },
-    { niche: 'Spa · Palm Jumeirah',     name: 'Serenity<br/>Spa',             v1: '+240%', l1: 'Reservations', v2: '4.8★', l2: 'Google' },
-    { niche: 'Law Firm · Downtown',     name: 'Al-Rashid<br/>Legal',          v1: '+160%', l1: 'Leads',        v2: '4.9★', l2: 'Google' },
-    { niche: 'Dentist · Jumeirah',      name: 'SmileFirst<br/>Dental',        v1: '+130%', l1: 'Appointments', v2: '4.9★', l2: 'Google' },
-    { niche: 'Café · City Walk',   name: 'Brew &amp;<br/>Bloom',         v1: '+170%', l1: 'Orders',       v2: '4.8★', l2: 'Google' },
-    { niche: 'Plumber · Mirdif',        name: 'FastFix<br/>Plumbing',         v1: '+160%', l1: 'Calls',        v2: '4.7★', l2: 'Google' },
-    { niche: 'Photographer · JLT',      name: 'FrameIt<br/>Studio',           v1: '+210%', l1: 'Enquiries',    v2: '5.0★', l2: 'Google' },
-    { niche: 'Auto Shop · Al Quoz',     name: 'DriveOn<br/>Garage',           v1: '+140%', l1: 'Bookings',     v2: '4.8★', l2: 'Google' },
+  /* --- Hero card shuffle (8 demo website builds) --- */
+  var heroBuilds = [
+    { niche: 'Barbershop · Grooming',   name: 'KingsCut<br/>Barbershop',      pkg: 'Starter Package',  amt: '850 AED'   },
+    { niche: 'Salon · Beauty',          name: 'Luxe Hair<br/>Studio',          pkg: 'Growth Package',   amt: '1,400 AED' },
+    { niche: 'Restaurant · Dine',       name: 'The Plated<br/>Table',          pkg: 'Growth Package',   amt: '1,400 AED' },
+    { niche: 'Health Clinic · Med',     name: 'PrimeCare<br/>Clinic',          pkg: 'Dominator Build',  amt: '2,200 AED' },
+    { niche: 'Gym · Fitness',           name: 'IronPeak<br/>Fitness',          pkg: 'Growth Package',   amt: '1,400 AED' },
+    { niche: 'Spa · Wellness',          name: 'Serenity<br/>Spa',              pkg: 'Growth Package',   amt: '1,400 AED' },
+    { niche: 'Home Services · UAE',     name: 'FastFix<br/>Plumbing',          pkg: 'Starter Package',  amt: '850 AED'   },
+    { niche: 'Aesthetics · Skin',       name: 'GlowFirst<br/>Aesthetics',      pkg: 'Dominator Build',  amt: '2,200 AED' },
   ];
   var bizIdx = 0;
   var card1 = document.querySelector('.hcard-1');
@@ -202,35 +198,44 @@ document.addEventListener('DOMContentLoaded', function () {
       card2 ? card2.querySelector('.hcard-title') : null,
       card3 ? card3.querySelector('.hcard-title') : null
     ];
-    var stats = card1.querySelectorAll('.hcard-stats div');
+    var pkgEl = card1.querySelector('.hcard-pkg');
+    var amtEl = card1.querySelector('.hcard-amt');
 
     setInterval(function () {
-      bizIdx = (bizIdx + 1) % heroBusinesses.length;
-      var b0 = heroBusinesses[bizIdx];
-      var b1 = heroBusinesses[(bizIdx + 1) % heroBusinesses.length];
-      var b2 = heroBusinesses[(bizIdx + 2) % heroBusinesses.length];
+      bizIdx = (bizIdx + 1) % heroBuilds.length;
+      var b0 = heroBuilds[bizIdx];
+      var b1 = heroBuilds[(bizIdx + 1) % heroBuilds.length];
+      var b2 = heroBuilds[(bizIdx + 2) % heroBuilds.length];
 
       card1.classList.add('card-exit');
 
       setTimeout(function () {
         if (niches[0]) niches[0].textContent = b0.niche;
-        if (titles[0]) titles[0].innerHTML  = b0.name;
-        if (stats[0])  { stats[0].querySelector('span').textContent = b0.v1; stats[0].querySelector('small').textContent = b0.l1; }
-        if (stats[1])  { stats[1].querySelector('span').textContent = b0.v2; stats[1].querySelector('small').textContent = b0.l2; }
+        if (titles[0]) titles[0].innerHTML   = b0.name;
+        if (pkgEl)     pkgEl.textContent     = b0.pkg;
+        if (amtEl)     amtEl.textContent     = b0.amt;
         if (niches[1]) niches[1].textContent = b1.niche;
-        if (titles[1]) titles[1].innerHTML  = b1.name;
+        if (titles[1]) titles[1].innerHTML   = b1.name;
         if (niches[2]) niches[2].textContent = b2.niche;
-        if (titles[2]) titles[2].innerHTML  = b2.name;
+        if (titles[2]) titles[2].innerHTML   = b2.name;
 
         card1.classList.remove('card-exit');
         card1.classList.add('card-enter');
         requestAnimationFrame(function () {
-          requestAnimationFrame(function () {
-            card1.classList.remove('card-enter');
-          });
+          requestAnimationFrame(function () { card1.classList.remove('card-enter'); });
         });
       }, 400);
     }, 3200);
+
+    /* Click any card → scroll to contact form */
+    document.querySelectorAll('.hcard').forEach(function (hc) {
+      hc.addEventListener('click', function () {
+        var contact = document.querySelector('#contact');
+        if (!contact) return;
+        var off = navbar ? navbar.offsetHeight + 16 : 80;
+        window.scrollTo({ top: contact.getBoundingClientRect().top + window.scrollY - off, behavior: 'smooth' });
+      });
+    });
   }
 
 });
