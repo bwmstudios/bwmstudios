@@ -112,6 +112,66 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  /* --- Work card click cycling --- */
+  var workSlides = {
+    'wc-salon': [
+      { h3: 'Health & Wellness Websites',    p: 'Clinics, dentists, gyms, spas — be our first case study and get a launch discount.' },
+      { h3: 'Prime Care Clinic · Dubai Marina', p: '+220% online bookings in 60 days. Zero paid ads.' },
+      { h3: 'FitZone Gym · Business Bay',      p: '+180% new memberships via online sign-up form.' },
+      { h3: 'SmileFirst Dental · Jumeirah',    p: 'Fully booked 3 weeks out — the site does the selling.' },
+    ],
+    'wc-spa': [
+      { h3: 'Salons, Barbershops & More',       p: 'Turn your Instagram following into booked chairs with a site built to convert.' },
+      { h3: 'Luxe Studio · JBR',                p: '+180% walk-in clients in the first 30 days after launch.' },
+      { h3: 'KingsCut Barber · Deira',           p: '5.0★ Google rating — 20+ new enquiries every week.' },
+      { h3: 'GlowUp Salon · City Walk',          p: '+210% bookings via WhatsApp — no app needed.' },
+    ],
+    'wc-restaurant': [
+      { h3: 'Restaurants & Cafés',              p: 'Digital menus, table reservations, food galleries. Fill seats and reduce no-shows.' },
+      { h3: 'The Table · DIFC',                 p: '+150% online table reservations. No-shows dropped 60%.' },
+      { h3: 'Brew & Bloom Café · City Walk',    p: '+170% daily orders — customers order ahead via the site.' },
+      { h3: 'The Grill House · Marina',         p: 'Digital menu cut print costs. Reservations up 90%.' },
+    ],
+    'wc-clinic': [
+      { h3: 'Plumbers, Cleaners & More',         p: 'Get found in "near me" searches and make booking effortless.' },
+      { h3: 'FastFix Plumbing · Mirdif',         p: '+160% service calls. Now ranking #1 in local search.' },
+      { h3: 'Bright Clean · Jumeirah',           p: '3× repeat client rate with one-tap rebooking via WhatsApp.' },
+      { h3: 'PowerUp Electric · Al Quoz',        p: 'Top 3 Google ranking for "electrician Dubai" in 90 days.' },
+    ],
+    'wc-beauty': [
+      { h3: 'Lash Bars, Skin Clinics & More',   p: 'Showcase treatments, build trust with before/afters and fill your calendar.' },
+      { h3: 'SkinFirst Clinic · DIFC',          p: '+190% consultation bookings — before/after gallery builds trust instantly.' },
+      { h3: 'Lash & Brow Bar · JBR',            p: 'Fully booked 2 weeks ahead every week. Zero paid ads.' },
+      { h3: 'GlowMed Spa · Palm Jumeirah',      p: '+220% treatment enquiries since site launch.' },
+    ],
+  };
+  var wcIdx = {};
+  var wcNiches = ['wc-salon','wc-spa','wc-restaurant','wc-clinic','wc-beauty'];
+  document.querySelectorAll('.work-card').forEach(function (card) {
+    var niche = wcNiches.find(function (c) { return card.classList.contains(c); });
+    if (!niche) return;
+    wcIdx[niche] = 0;
+    card.addEventListener('click', function () {
+      var slides  = workSlides[niche];
+      wcIdx[niche] = (wcIdx[niche] + 1) % slides.length;
+      var slide   = slides[wcIdx[niche]];
+      var overlay = card.querySelector('.wc-overlay');
+      var h3el    = card.querySelector('.wc-overlay h3');
+      var pel     = card.querySelector('.wc-overlay p');
+      var dots    = card.querySelectorAll('.wc-dot');
+      if (!overlay || !h3el || !pel) return;
+      overlay.classList.add('wc-fade-out');
+      setTimeout(function () {
+        h3el.textContent = slide.h3;
+        pel.textContent  = slide.p;
+        dots.forEach(function (d, i) { d.classList.toggle('active', i === wcIdx[niche]); });
+        overlay.classList.remove('wc-fade-out');
+        overlay.classList.add('wc-fade-in');
+        setTimeout(function () { overlay.classList.remove('wc-fade-in'); }, 300);
+      }, 220);
+    });
+  });
+
   /* --- Hero card shuffle --- */
   var heroBusinesses = [
     { niche: 'Clinic · Dubai Marina',   name: 'Prime Care<br/>Clinic',       v1: '+220%', l1: 'Bookings',     v2: '4.9★', l2: 'Google' },
