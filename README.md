@@ -7,13 +7,15 @@
 
 ## Project Structure
 ```
-buildwithme/
-├── index.html        ← Full single-page website
+bwmstudios/
+├── index.html              ← Full single-page website
+├── salon-barbershop.html   ← Niche demo page
+├── coming-soon.html        ← Coming-soon placeholder
 ├── css/
-│   └── style.css     ← All styles, colours, layout, responsive
+│   ├── style.css           ← All styles, colours, layout, responsive
+│   └── niche.css           ← Niche page styles
 ├── js/
-│   └── main.js       ← Nav, cursor, animations, form validation
-├── images/           ← Add your project screenshots here
+│   └── main.js             ← Nav, cursor, animations, form validation
 └── README.md
 ```
 
