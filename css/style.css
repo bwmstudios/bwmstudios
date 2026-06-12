@@ -156,7 +156,31 @@ p  { line-height: 1.85; }
   max-width: 1320px; margin: 0 auto;
   display: grid; grid-template-columns: 1fr 1fr;
   align-items: center; gap: 5rem; position: relative;
+  overflow: hidden;
 }
+.hero-bg-anim { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.bwm-bg-el {
+  position: absolute;
+  font-family: var(--font-h);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--amber);
+  user-select: none;
+  pointer-events: none;
+  line-height: 1;
+  animation: bwm-float var(--dur, 12s) var(--delay, 0s) ease-in-out infinite;
+}
+@keyframes bwm-float {
+  0%, 100% {
+    opacity: var(--op, 0.04);
+    transform: translateY(0px) rotate(var(--rot, 0deg)) scale(1);
+  }
+  50% {
+    opacity: calc(var(--op, 0.04) * 1.9);
+    transform: translateY(-18px) rotate(calc(var(--rot, 0deg) + 5deg)) scale(1.04);
+  }
+}
+.hero-left, .hero-right { position: relative; z-index: 1; }
 .hero-tag {
   display: inline-flex; align-items: center; gap: 0.6rem;
   font-family: var(--font-h); font-size: 0.68rem; font-weight: 600;
@@ -496,6 +520,10 @@ video.wc-bg { width: 100%; height: 100%; object-fit: cover; background: none; }
 .testi-author strong { display: block; font-size: 0.82rem; font-family: var(--font-h); }
 .testi-author span { font-size: 0.7rem; color: var(--t3); }
 .testi-note { font-size: 0.68rem; color: var(--t3); text-align: center; margin-top: 1.5rem; font-style: italic; }
+.testi-empty { text-align: center; padding: 5rem 2rem; border: 1px dashed var(--border2); max-width: 500px; margin: 0 auto; }
+.testi-empty-icon { font-size: 3rem; color: var(--amber); opacity: 0.3; margin-bottom: 1.5rem; }
+.testi-empty h3 { margin-bottom: 1rem; font-size: 1.4rem; }
+.testi-empty p { color: var(--t2); font-size: 0.95rem; line-height: 1.85; max-width: 360px; margin: 0 auto; }
 
 /* ============================================================ CONTACT */
 .contact { padding: 10rem 0; border-top: 1px solid var(--border); }
