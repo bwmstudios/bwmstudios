@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Build With Me – استوديو تصميم مواقع احترافية للأعمال المحلية في دبي. نبني مواقع تجلب لك المزيد من العملاء. من 1,100 درهم."/>
+  <meta property="og:title" content="Build With Me | تصميم مواقع للأعمال المحلية · دبي"/>
+  <meta property="og:description" content="مواقع إلكترونية احترافية للأعمال المحلية في دبي. تبدأ من 1,100 درهم. تعيش في 7 أيام."/>
+  <title>Build With Me | تصميم مواقع للأعمال المحلية · دبي</title>
+  <script>
+    (function(){
+      if(localStorage.getItem('bwm-lang')==='ar') return;
+      var l=(navigator.language||navigator.userLanguage||'').toLowerCase();
+      if(!l.startsWith('ar')){ localStorage.setItem('bwm-lang','en'); location.replace('index.html'); }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@300;400;500;600&family=Syne:wght@400;600;700;800&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <style>
+    /* ── RTL & Arabic font overrides ── */
+    body { font-family: 'Tajawal', system-ui, sans-serif; }
+    h1, h2, h3, h4, .section-chip, .pkg-label, .hcard-niche, .hcard-live,
+    .hcard-title, .process-num, .wc-chip, .wc-yours-scroll span,
+    .metric-val, .metric-label, .hero-tag span, .logo-name,
+    .nav-links a, .btn-main, .btn-line, .pkg-from, .pkg-aed,
+    .testi-niche, .testi-stars, .testi-av, .footer-col h5 {
+      font-family: 'Cairo', system-ui, sans-serif;
+      letter-spacing: 0 !important;
+    }
+    /* Reset letter-spacing for all Arabic elements */
+    * { letter-spacing: 0; }
+    .section-chip { letter-spacing: 0.05em; }
+
+    /* Nav RTL */
+    .nav-inner { flex-direction: row-reverse; }
+    .nav-links  { flex-direction: row-reverse; }
+
+    /* Hero RTL */
+    .hero { direction: rtl; }
+    .hero-left h1 { text-align: right; }
+    .hero-p { text-align: right; max-width: 480px; margin-right: 0; }
+    .hero-btns { flex-direction: row-reverse; }
+    .hero-metrics { flex-direction: row-reverse; }
+    .hero-scroll { left: auto; right: 3rem; }
+
+    /* Cards */
+    .hcard-top { flex-direction: row-reverse; }
+
+    /* Section heads */
+    .section-head { text-align: right; }
+
+    /* Work grid */
+    .wc-overlay { text-align: right; }
+    .wc-yours-inner { text-align: center; }
+    .wc-yours-scroll { animation-direction: reverse; }
+
+    /* Packages */
+    .pkg-grid { direction: rtl; }
+    .pkg-price-block { flex-direction: row-reverse; justify-content: flex-end; }
+    .pkg-list li { flex-direction: row-reverse; text-align: right; }
+    .pkg-list i { margin-top: 3px; }
+    .pkg-addons { text-align: right; }
+    .pkg-addons span { text-align: right; }
+    .pkg-note-banner { flex-direction: row-reverse; text-align: right; }
+
+    /* Process */
+    .process-grid { flex-direction: row-reverse; }
+    .process-card { text-align: right; }
+    .process-time { text-align: right; }
+
+    /* Why Us */
+    .why-inner { flex-direction: row-reverse; }
+    .why-left { text-align: right; }
+    .why-promise { direction: rtl; }
+    .promise-item { flex-direction: row-reverse; }
+    .why-card { text-align: right; }
+    .why-card-icon { margin-right: 0; }
+
+    /* Testimonials */
+    .testi-empty { text-align: center; }
+
+    /* Contact */
+    .contact-wrap { flex-direction: row-reverse; }
+    .contact-left { text-align: right; }
+    .contact-methods { direction: rtl; }
+    .cmethod { flex-direction: row-reverse; }
+    .contact-badge { flex-direction: row-reverse; }
+    .form-duo, .fg { direction: rtl; }
+    label { text-align: right; display: block; }
+    input, select, textarea { text-align: right; direction: rtl; }
+
+    /* Footer */
+    .footer-top { flex-direction: row-reverse; }
+    .footer-brand { text-align: right; }
+    .footer-logo { flex-direction: row-reverse; }
+    .footer-contact-quick { text-align: right; }
+    .footer-social { text-align: right; }
+    .footer-nav { flex-direction: row-reverse; }
+    .footer-col { text-align: right; }
+    .footer-bottom { flex-direction: row-reverse; text-align: center; }
+
+    /* Ticker reversed */
+    .ticker-track { animation-direction: reverse; }
+
+    /* H1 stroke effect override */
+    .h1-stroke { -webkit-text-stroke: 2px rgba(250,250,250,0.2); color: transparent; }
+  </style>
+</head>
+<body>
+
+  <div class="noise"></div>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index-ar.html" class="logo">
+        <div class="logo-mark">
+          <span>B</span><span>W</span><span>M</span>
+        </div>
+        <span class="logo-name">Build With Me</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="القائمة">
+        <span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="lang-switch" onclick="localStorage.setItem('bwm-lang','en')">EN</a></li>
+        <li><a href="#contact" class="nav-pill">احصل على عرض ←</a></li>
+        <li><a href="#process">كيف نعمل</a></li>
+        <li><a href="#packages">الباقات</a></li>
+        <li><a href="#work">معرض الأعمال</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg-anim" id="heroBgAnim" aria-hidden="true"></div>
+    <div class="hero-left">
+      <div class="hero-tag">
+        <div class="tag-pulse"></div>
+        <span>متاح للمشاريع · دبي، الإمارات</span>
+      </div>
+      <h1>
+        نبني<br/>
+        <span class="h1-stroke">مواقع</span><br/>
+        تُحقِّق <span class="h1-accent">نتائج.</span>
+      </h1>
+      <p class="hero-p">مواقع إلكترونية احترافية لأي نشاط تجاري محلي في دبي — عيادات، صالونات، مطاعم، صالات رياضية، مكاتب قانونية، خدمات منزلية والمزيد. مصممة لجلب العملاء إلى بابك.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-main">ابدأ مشروعك <span class="btn-arrow">↗</span></a>
+        <a href="#work" class="btn-line">معرض الأعمال</a>
+      </div>
+      <div class="hero-metrics">
+        <div class="metric">
+          <span class="metric-val">1,100<small>درهم</small></span>
+          <span class="metric-label">السعر يبدأ من</span>
+        </div>
+        <div class="metric-sep"></div>
+        <div class="metric">
+          <span class="metric-val">7<small>أيام</small></span>
+          <span class="metric-label">متوسط التسليم</span>
+        </div>
+        <div class="metric-sep"></div>
+        <div class="metric">
+          <span class="metric-val">+50</span>
+          <span class="metric-label">نوع نشاط تجاري</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-cards-stack">
+        <div class="hcard hcard-1">
+          <div class="hcard-top">
+            <span class="hcard-niche">عيادة · دبي مارينا</span>
+            <span class="hcard-live">● مباشر</span>
+          </div>
+          <div class="hcard-title">عيادة<br/>برايم كير</div>
+          <div class="hcard-bar"></div>
+          <div class="hcard-stats">
+            <div><span>+220%</span><small>حجوزات</small></div>
+            <div><span>4.9★</span><small>جوجل</small></div>
+          </div>
+        </div>
+        <div class="hcard hcard-2">
+          <div class="hcard-top">
+            <span class="hcard-niche">صالون · JBR</span>
+            <span class="hcard-live">● مباشر</span>
+          </div>
+          <div class="hcard-title">لوكس<br/>ستوديو</div>
+          <div class="hcard-bar"></div>
+        </div>
+        <div class="hcard hcard-3">
+          <div class="hcard-top">
+            <span class="hcard-niche">مطعم · DIFC</span>
+          </div>
+          <div class="hcard-title">ذا تيبل</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>مرر للاستكشاف</span>
+      <div class="scroll-track"><div class="scroll-thumb"></div></div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <div class="ticker-track">
+        <span>صالونات</span><em>✦</em>
+        <span>عيادات</span><em>✦</em>
+        <span>مطاعم</span><em>✦</em>
+        <span>صالات رياضية</span><em>✦</em>
+        <span>حلاقين</span><em>✦</em>
+        <span>مكاتب محاماة</span><em>✦</em>
+        <span>سبا وعافية</span><em>✦</em>
+        <span>كهربائيون</span><em>✦</em>
+        <span>أطباء أسنان</span><em>✦</em>
+        <span>مقاهٍ</span><em>✦</em>
+        <span>سباكون</span><em>✦</em>
+        <span>مصورون</span><em>✦</em>
+        <span>تنظيف</span><em>✦</em>
+        <span>تدريب حيوانات</span><em>✦</em>
+        <span>مدرسون</span><em>✦</em>
+        <span>ورش سيارات</span><em>✦</em>
+        <span>عقارات</span><em>✦</em>
+        <span>استوديوهات رقص</span><em>✦</em>
+        <span>طهاة</span><em>✦</em>
+        <span>محاسبون</span><em>✦</em>
+        <span>صالونات</span><em>✦</em>
+        <span>عيادات</span><em>✦</em>
+        <span>مطاعم</span><em>✦</em>
+        <span>صالات رياضية</span><em>✦</em>
+        <span>حلاقين</span><em>✦</em>
+        <span>مكاتب محاماة</span><em>✦</em>
+        <span>سبا وعافية</span><em>✦</em>
+        <span>كهربائيون</span><em>✦</em>
+        <span>أطباء أسنان</span><em>✦</em>
+        <span>مقاهٍ</span><em>✦</em>
+        <span>سباكون</span><em>✦</em>
+        <span>مصورون</span><em>✦</em>
+        <span>تنظيف</span><em>✦</em>
+        <span>تدريب حيوانات</span><em>✦</em>
+        <span>مدرسون</span><em>✦</em>
+        <span>ورش سيارات</span><em>✦</em>
+        <span>عقارات</span><em>✦</em>
+        <span>استوديوهات رقص</span><em>✦</em>
+        <span>طهاة</span><em>✦</em>
+        <span>محاسبون</span><em>✦</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- PORTFOLIO -->
+  <section class="work" id="work">
+    <div class="container">
+      <div class="section-head" style="text-align:center">
+        <div class="section-chip">معرض الأعمال</div>
+        <h2>بُني لنتائج <span class="accent">حقيقية</span></h2>
+        <p>كل موقع مصمم لهدف واحد — المزيد من العملاء على بابك.</p>
+      </div>
+    </div>
+    <div class="work-grid">
+      <div class="work-card wc-salon">
+        <video class="wc-bg" autoplay muted loop playsinline>
+          <source src="Videos/health%20and%20Wellness.mp4" type="video/mp4"/>
+        </video>
+        <div class="wc-tint"></div>
+        <div class="wc-overlay">
+          <div class="wc-chip">🏥 صحة وعافية</div>
+          <h3>مواقع الصحة والعافية</h3>
+          <p>عيادات، أطباء أسنان، صالات رياضية، سبا — كن أول حالة نجاح لنا.</p>
+          <div class="wc-slide-dots">
+            <span class="wc-dot active"></span><span class="wc-dot"></span><span class="wc-dot"></span><span class="wc-dot"></span>
+          </div>
+        </div>
+      </div>
+      <div class="work-card wc-spa">
+        <video class="wc-bg" autoplay muted loop playsinline>
+          <source src="Videos/salon.mp4" type="video/mp4"/>
+        </video>
+        <div class="wc-tint"></div>
+        <div class="wc-overlay">
+          <div class="wc-chip">✂ جمال وتصفيف</div>
+          <h3>صالونات وحلاقين وأكثر</h3>
+          <p>حوّل متابعيك على انستغرام إلى حجوزات مع موقع مصمم للتحويل.</p>
+          <div class="wc-slide-dots">
+            <span class="wc-dot active"></span><span class="wc-dot"></span><span class="wc-dot"></span><span class="wc-dot"></span>
+          </div>
+        </div>
+      </div>
+      <div class="work-card wc-restaurant">
+        <video class="wc-bg" autoplay muted loop playsinline>
+          <source src="Videos/restaurants.mp4" type="video/mp4"/>
+        </video>
+        <div class="wc-tint"></div>
+        <div class="wc-overlay">
+          <div class="wc-chip">⚜ طعام وضيافة</div>
+          <h3>مطاعم ومقاهٍ</h3>
+          <p>قوائم رقمية، حجز طاولات، معارض الطعام. امتلئ المقاعد وقلّل الغيابات.</p>
+          <div class="wc-slide-dots">
+            <span class="wc-dot active"></span><span class="wc-dot"></span><span class="wc-dot"></span><span class="wc-dot"></span>
+          </div>
+        </div>
+      </div>
+      <div class="work-card wc-clinic">
+        <video class="wc-bg" autoplay muted loop playsinline>
+          <source src="Videos/cleaning.mp4" type="video/mp4"/>
+        </video>
+        <div class="wc-tint"></div>
+        <div class="wc-overlay">
+          <div class="wc-chip">🔧 خدمات منزلية</div>
+          <h3>سباكة، تنظيف وأكثر</h3>
+          <p>اظهر في نتائج "بالقرب مني" على جوجل واجعل الحجز أمراً سهلاً.</p>
+          <div class="wc-slide-dots">
+            <span class="wc-dot active"></span><span class="wc-dot"></span><span class="wc-dot"></span><span class="wc-dot"></span>
+          </div>
+        </div>
+      </div>
+      <div class="work-card wc-beauty">
+        <video class="wc-bg" autoplay muted loop playsinline>
+          <source src="Videos/barbershop-1.mp4" type="video/mp4"/>
+        </video>
+        <div class="wc-tint"></div>
+        <div class="wc-overlay">
+          <div class="wc-chip">💅 تجميل وأناقة</div>
+          <h3>عيادات البشرة والرموش وأكثر</h3>
+          <p>اعرض أعمالك، ابنِ ثقة العملاء بالصور قبل/بعد وابقِ تقويمك ممتلئاً.</p>
+          <div class="wc-slide-dots">
+            <span class="wc-dot active"></span><span class="wc-dot"></span><span class="wc-dot"></span><span class="wc-dot"></span>
+          </div>
+        </div>
+      </div>
+      <div class="work-card wc-yours">
+        <div class="wc-yours-scroll-wrap">
+          <div class="wc-yours-scroll">
+            <span>صالات رياضية</span><em>·</em><span>محاماة</span><em>·</em><span>تصوير</span><em>·</em><span>ورش سيارات</span><em>·</em><span>مدرسون</span><em>·</em><span>رقص</span><em>·</em><span>طهاة</span><em>·</em><span>محاسبون</span><em>·</em><span>ورود</span><em>·</em><span>أسنان</span><em>·</em><span>عقارات</span><em>·</em><span>صالات رياضية</span><em>·</em><span>محاماة</span><em>·</em><span>تصوير</span><em>·</em><span>ورش سيارات</span><em>·</em><span>مدرسون</span><em>·</em><span>رقص</span><em>·</em><span>طهاة</span><em>·</em><span>محاسبون</span><em>·</em><span>ورود</span><em>·</em><span>أسنان</span><em>·</em><span>عقارات</span><em>·</em>
+          </div>
+        </div>
+        <div class="wc-yours-inner">
+          <h3>وأكثر بكثير</h3>
+          <p class="wc-yours-sub">مهما كان نشاطك — إن كنت تخدم عملاء في دبي، نبنيه لك.</p>
+          <a href="#contact" class="btn-main btn-sm">ابنِ موقعك <span class="btn-arrow">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="packages" id="packages">
+    <div class="container">
+      <div class="section-head" style="text-align:center">
+        <div class="section-chip">الأسعار</div>
+        <h2>أسعار بسيطة <span class="accent">وشفافة</span></h2>
+        <p>ثلاث باقات، لا تعقيد. ابدأ من حيث أنت والارتقِ عندما تكون جاهزاً. كل باقة مصممة لتنمية نشاطك، لا لمجرد إنشاء موقع.</p>
+      </div>
+
+      <div class="pkg-grid">
+
+        <!-- STARTER -->
+        <div class="pkg-card">
+          <div class="pkg-label">الأساسي</div>
+          <div class="pkg-price-block">
+            <span class="pkg-from">من</span>
+            <span class="pkg-num">1,100</span>
+            <span class="pkg-aed">درهم</span>
+          </div>
+          <div class="pkg-sub">موقع قائم على قالب احترافي، مُخصَّص لعلامتك التجارية ومحتواك. احضر إلكترونياً بسرعة دون تكلفة التصميم المخصص.</div>
+          <ul class="pkg-list">
+            <li><i>✓</i>4 صفحات (الرئيسية، الخدمات، المعرض، التواصل)</li>
+            <li><i>✓</i>زر واتساب + خريطة جوجل</li>
+            <li><i>✓</i>قائمة الخدمات والأسعار</li>
+            <li><i>✓</i>معرض صور (حتى 10 صور)</li>
+            <li><i>✓</i>تصميم للجوال أولاً</li>
+            <li><i>✓</i>SEO أساسي (العنوان، الوصف، الكلمات المحلية)</li>
+            <li><i>✓</i>تسليم في 7 أيام</li>
+            <li><i>✓</i>جولتا مراجعة</li>
+          </ul>
+          <div class="pkg-addons"><p>إضافات شائعة</p><span>إعداد جوجل للأعمال +250 درهم</span><span>تصميم شعار +400 درهم</span></div>
+          <a href="salon-barbershop.html#packages" class="pkg-cta">احجز موقعك الآن ←</a>
+        </div>
+
+        <!-- GROWTH -->
+        <div class="pkg-card pkg-featured">
+          <div class="pkg-popular">الأكثر طلباً</div>
+          <div class="pkg-label">النمو</div>
+          <div class="pkg-price-block">
+            <span class="pkg-from">من</span>
+            <span class="pkg-num">2,100</span>
+            <span class="pkg-aed">درهم</span>
+          </div>
+          <div class="pkg-sub">تصميم مخصص كامل — لا قوالب. مصمم ليُظهرك على جوجل ويُبقي تقويمك ممتلئاً. يتضمن النسختين العربية والإنجليزية مع كشف تلقائي للغة.</div>
+          <ul class="pkg-list">
+            <li><i>✓</i>تصميم مخصص كامل (من الصفر)</li>
+            <li><i>✓</i>حتى 6 صفحات شاملة ملفات الفريق</li>
+            <li><i>✓</i>نظام الحجز الإلكتروني</li>
+            <li><i>✓</i>إعداد ملف جوجل للأعمال</li>
+            <li><i>✓</i>SEO على الصفحة + جوجل أناليتيكس</li>
+            <li><i>✓</i>معرض صور موسّع (30+ صورة)</li>
+            <li><i>✓</i>موقع عربي وإنجليزي مع كشف تلقائي للغة</li>
+            <li><i>✓</i>تسليم في 10 أيام</li>
+            <li><i>✓</i>3 جولات مراجعة</li>
+          </ul>
+          <div class="pkg-addons"><p>إضافات شائعة</p><span>صيانة شهرية +250 درهم/شهر</span><span>تصميم شعار +400 درهم</span></div>
+          <a href="salon-barbershop.html#packages" class="pkg-cta pkg-cta-featured">احجز موقعك الآن ←</a>
+        </div>
+
+        <!-- DOMINATOR -->
+        <div class="pkg-card">
+          <div class="pkg-label">المسيطر</div>
+          <div class="pkg-price-block">
+            <span class="pkg-from">من</span>
+            <span class="pkg-num">3,200</span>
+            <span class="pkg-aed">درهم</span>
+          </div>
+          <div class="pkg-sub">البناء الكامل. تصميم فاخر، كل التكاملات، وكل ما تحتاجه لتكون الخيار الأول في منطقتك.</div>
+          <ul class="pkg-list">
+            <li><i>✓</i>تصميم فاخر + رسوم متحركة مخصصة</li>
+            <li><i>✓</i>ربط خلاصة انستغرام التلقائي</li>
+            <li><i>✓</i>SEO محلي كامل (بحث كلمات مفتاحية + ترميز)</li>
+            <li><i>✓</i>أتمتة واتساب (ردود تلقائية)</li>
+            <li><i>✓</i>ويدجت تقييمات جوجل (مباشر)</li>
+            <li><i>✓</i>تحسين السرعة وأداء الموقع</li>
+            <li><i>✓</i>شهر صيانة مشمول</li>
+            <li><i>✓</i>موقع عربي وإنجليزي مع كشف تلقائي للغة</li>
+            <li><i>✓</i>تسليم في 12–14 يوماً</li>
+            <li><i>✓</i>3 جولات مراجعة</li>
+          </ul>
+          <div class="pkg-addons"><p>إضافات شائعة</p><span>صيانة شهرية مستمرة +300 درهم/شهر</span><span>تصميم شعار +400 درهم</span></div>
+          <a href="salon-barbershop.html#packages" class="pkg-cta">احجز الآن ←</a>
+        </div>
+
+      </div>
+
+      <div class="pkg-note-banner">
+        <span>💡</span>
+        <p>غير متأكد من الباقة المناسبة؟ <a href="salon-barbershop.html#packages">اطّلع على التفاصيل الكاملة</a> أو <a href="#contact">راسلنا على واتساب</a> — سنوصي لك بما يناسب نشاطك خلال 10 دقائق. بدون ضغط، بدون مبيعات مزعجة.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="section-head" style="text-align:center">
+        <div class="section-chip">كيف نعمل</div>
+        <h2>موقعك حي في <span class="accent">7 أيام.</span></h2>
+        <p>من أول رسالة إلى الموقع المباشر — عملية واضحة وبسيطة بلا مفاجآت.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-card">
+          <div class="process-num">01</div>
+          <h3>الاستكشاف</h3>
+          <p>نتحدث عبر واتساب أو نلتقي شخصياً. تخبرنا عن نشاطك وأهدافك وما تحتاجه. بلا مصطلحات تقنية.</p>
+          <div class="process-time">اليوم الأول</div>
+        </div>
+        <div class="process-arrow">←</div>
+        <div class="process-card">
+          <div class="process-num">02</div>
+          <h3>التصميم والبناء</h3>
+          <p>نبني موقعك مخصصاً لنشاطك وهويتك. تحصل على تحديثات مستمرة حتى تطمئن.</p>
+          <div class="process-time">الأيام 2–5</div>
+        </div>
+        <div class="process-arrow">←</div>
+        <div class="process-card">
+          <div class="process-num">03</div>
+          <h3>المراجعة</h3>
+          <p>تراجع الموقع الكامل وتطلب التعديلات. نعمل على ملاحظاتك في جولات منظمة حتى ترضى.</p>
+          <div class="process-time">الأيام 5–6</div>
+        </div>
+        <div class="process-arrow">←</div>
+        <div class="process-card">
+          <div class="process-num">04</div>
+          <h3>الإطلاق</h3>
+          <p>نطلق الموقع ونربط دومينك ونُعدّ الحسابات ونسلمك كل شيء. تبدأ تحصل على عملاء.</p>
+          <div class="process-time">اليوم السابع</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why">
+    <div class="container">
+      <div class="why-inner">
+        <div class="why-left">
+          <div class="section-chip">لماذا Build With Me</div>
+          <h2>نحن لا نبني مواقع فقط.<br/><span class="accent">نبني أعمالاً تجارية.</span></h2>
+          <p>معظم مصمّمي المواقع يسلمون موقعاً جميلاً ثم يختفون. نحن نبقى معك — نتابع نتائجك، نُجري التحديثات، ونتأكد أن موقعك يؤدي دوره دائماً.</p>
+          <div class="why-promise">
+            <div class="promise-item">
+              <span class="promise-check">✓</span>
+              <span>لا اختفاء بعد الإطلاق</span>
+            </div>
+            <div class="promise-item">
+              <span class="promise-check">✓</span>
+              <span>تقارير أداء شهرية متاحة</span>
+            </div>
+            <div class="promise-item">
+              <span class="promise-check">✓</span>
+              <span>دعم واتساب دائماً</span>
+            </div>
+            <div class="promise-item">
+              <span class="promise-check">✓</span>
+              <span>جولات مراجعة مع كل باقة</span>
+            </div>
+          </div>
+          <a href="#contact" class="btn-main">ابدأ البناء <span class="btn-arrow">↗</span></a>
+        </div>
+        <div class="why-right">
+          <div class="why-cards">
+            <div class="why-card">
+              <div class="why-card-icon">⚡</div>
+              <h4>تسليم في 7 أيام</h4>
+              <p>معظم المواقع تعيش خلال أسبوع. سريع واحترافي بلا تأخير.</p>
+            </div>
+            <div class="why-card why-card-gold">
+              <div class="why-card-icon">📱</div>
+              <h4>الجوال أولاً</h4>
+              <p>+80% من عملائك يزورونك من الهاتف. كل موقع نبنيه للجوال أولاً.</p>
+            </div>
+            <div class="why-card why-card-gold">
+              <div class="why-card-icon">📈</div>
+              <h4>مصمم للتحويل</h4>
+              <p>كل صفحة تدفع الزوار نحو الحجوزات والمكالمات والزيارات.</p>
+            </div>
+            <div class="why-card">
+              <div class="why-card-icon">🤝</div>
+              <h4>شريك طويل الأمد</h4>
+              <p>لا نختفي. صيانة وتحديثات شهرية متاحة دائماً.</p>
+            </div>
+            <div class="why-card">
+              <div class="why-card-icon">🎯</div>
+              <h4>لأي نشاط تجاري</h4>
+              <p>صالونات، عيادات، مطاعم، صالات رياضية، محاماة، خدمات منزلية — بنينا لهم جميعاً.</p>
+            </div>
+            <div class="why-card">
+              <div class="why-card-icon">🔍</div>
+              <h4>SEO جاهز</h4>
+              <p>كل موقع مبني مع جوجل في الذهن ليجدك العملاء المحليون بسهولة.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-head" style="text-align:center">
+        <div class="section-chip">آراء العملاء</div>
+        <h2>ماذا يقول <span class="accent">العملاء</span></h2>
+        <p>بدأنا للتو. ستُنشر آراء حقيقية من عملاء حقيقيين هنا — لا أسماء وهمية، لا اقتباسات مصطنعة.</p>
+      </div>
+      <div class="testi-empty">
+        <div class="testi-empty-icon">◈</div>
+        <h3>كُن أول من يُقيّمنا</h3>
+        <p>نبني سمعتنا عميلاً بعميل. اعمل معنا — وإن قدّمنا عملاً رائعاً، نودّ كلماتك الصادقة هنا.</p>
+        <a href="#contact" class="btn-main btn-sm" style="margin-top:1.5rem;display:inline-flex">تواصل معنا <span class="btn-arrow">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-wrap">
+        <div class="contact-left">
+          <div class="section-chip">تواصل</div>
+          <h2>جاهز<br/><span class="accent">للبناء؟</span></h2>
+          <p>أخبرنا عن نشاطك. سنرد بخطة واضحة وعرض سعر صادق خلال 24 ساعة.</p>
+          <div class="contact-methods">
+            <a href="mailto:peterbadu971@gmail.com" class="cmethod">
+              <span class="cmethod-icon">✉</span>
+              <div>
+                <small>البريد الإلكتروني</small>
+                <span>peterbadu971@gmail.com</span>
+              </div>
+            </a>
+            <a href="tel:+971508770385" class="cmethod">
+              <span class="cmethod-icon">📞</span>
+              <div>
+                <small>هاتف</small>
+                <span>+971 50 877 0385</span>
+              </div>
+            </a>
+            <a href="https://wa.me/971508770385" target="_blank" rel="noopener" class="cmethod cmethod-wa">
+              <span class="cmethod-icon">💬</span>
+              <div>
+                <small>واتساب (الأسرع)</small>
+                <span>+971 50 877 0385</span>
+              </div>
+            </a>
+            <a href="https://www.instagram.com/bwmstudio.ae/" target="_blank" rel="noopener" class="cmethod">
+              <span class="cmethod-icon">📸</span>
+              <div>
+                <small>انستغرام</small>
+                <span>@bwmstudio.ae</span>
+              </div>
+            </a>
+          </div>
+          <div class="contact-badge">
+            <span class="badge-dot"></span>
+            نرد عادةً خلال ساعتين
+          </div>
+        </div>
+        <div class="contact-right">
+          <form id="contactForm" action="https://formspree.io/f/xzdwljad" method="POST">
+            <div class="form-duo">
+              <div class="fg">
+                <label>اسمك *</label>
+                <input type="text" name="name" id="fname" placeholder="أحمد المنصوري" required/>
+                <span class="ferr" id="nameErr"></span>
+              </div>
+              <div class="fg">
+                <label>اسم النشاط التجاري</label>
+                <input type="text" name="business" placeholder="مثال: صالون غلامور"/>
+              </div>
+            </div>
+            <div class="form-duo">
+              <div class="fg">
+                <label>نوع النشاط</label>
+                <select name="niche">
+                  <option value="" disabled selected>اختر نوع نشاطك التجاري</option>
+                  <option>صالون / حلاقة</option>
+                  <option>عيادة / رعاية صحية</option>
+                  <option>مطعم / مقهى</option>
+                  <option>صالة رياضية / لياقة</option>
+                  <option>سبا / عافية</option>
+                  <option>مكتب محاماة / قانوني</option>
+                  <option>تنظيف / خدمات منزلية</option>
+                  <option>سباك / كهربائي / تكييف</option>
+                  <option>مصور / مصور فيديو</option>
+                  <option>عقارات</option>
+                  <option>محاسب / استشاري</option>
+                  <option>مدرس / تعليم</option>
+                  <option>تدريب الحيوانات الأليفة</option>
+                  <option>ورشة سيارات</option>
+                  <option>تجميل / أناقة</option>
+                  <option>أخرى</option>
+                </select>
+              </div>
+              <div class="fg">
+                <label>الباقة المناسبة</label>
+                <select name="package">
+                  <option value="" disabled selected>اختر باقة</option>
+                  <option>الأساسي — 1,100 درهم</option>
+                  <option>النمو — 2,100 درهم</option>
+                  <option>المسيطر — 3,200 درهم</option>
+                  <option>اشتراك شهري — 250 درهم/شهر</option>
+                  <option>لست متأكداً بعد</option>
+                </select>
+              </div>
+            </div>
+            <div class="fg">
+              <label>البريد الإلكتروني أو واتساب *</label>
+              <input type="text" name="contact" id="fcontact" placeholder="كيف نتواصل معك؟" required/>
+              <span class="ferr" id="contactErr"></span>
+            </div>
+            <div class="fg">
+              <label>أخبرنا عن نشاطك</label>
+              <textarea name="message" placeholder="ما نشاطك التجاري؟ ماذا تحتاج من موقعك؟ هل لديك مواقع تعجبك كمرجع؟" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn-main btn-full">
+              إرسال الرسالة <span class="btn-arrow">↗</span>
+            </button>
+            <p class="form-note">نرد خلال 24 ساعة · لا رسائل مزعجة أبداً</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="logo-mark sm"><span>B</span><span>W</span><span>M</span></div>
+            <span>Build With Me</span>
+          </div>
+          <p>تصميم مواقع احترافية للأعمال التجارية المحلية في دبي. نبني مواقع تعمل بجد كما تعمل أنت — لأي صناعة.</p>
+          <div class="footer-contact-quick">
+            <a href="mailto:peterbadu971@gmail.com">peterbadu971@gmail.com</a>
+            <a href="tel:+971508770385">+971 50 877 0385</a>
+          </div>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/bwmstudio.ae/" target="_blank" rel="noopener" class="fsocial-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              <span>@bwmstudio.ae</span>
+            </a>
+          </div>
+        </div>
+        <div class="footer-nav">
+          <div class="footer-col">
+            <h5>التنقل</h5>
+            <a href="#work">معرض الأعمال</a>
+            <a href="#packages">الباقات</a>
+            <a href="#process">كيف نعمل</a>
+            <a href="#contact">تواصل</a>
+          </div>
+          <div class="footer-col">
+            <h5>الباقات</h5>
+            <a href="#packages">الأساسي — 1,100 درهم</a>
+            <a href="#packages">النمو — 2,100 درهم</a>
+            <a href="#packages">المسيطر — 3,200 درهم</a>
+            <a href="#contact">عرض سعر مخصص</a>
+          </div>
+          <div class="footer-col">
+            <h5>تواصل</h5>
+            <a href="mailto:peterbadu971@gmail.com">راسلنا</a>
+            <a href="https://wa.me/971508770385">واتساب</a>
+            <a href="tel:+971508770385">اتصل بنا</a>
+            <a href="https://www.instagram.com/bwmstudio.ae/" target="_blank" rel="noopener">انستغرام</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Build With Me · بيتر بادو · دبي، الإمارات 🇦🇪</p>
+        <p>مصنوع بشغف لأعمال دبي</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/971508770385" class="wa-float" target="_blank" rel="noopener" aria-label="واتساب">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span>واتساب</span>
+  </a>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

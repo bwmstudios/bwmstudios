@@ -177,30 +177,32 @@ document.addEventListener('DOMContentLoaded', function () {
     var container = document.getElementById('heroBgAnim');
     if (!container) return;
     var items = [
-      { text: 'BWM', size: 13, left:  4, top: 8,  rot: -18, dur: 15, delay:   0, op: 0.045 },
-      { text: '◈',   size: 18, left: 62, top: 12, rot:   5, dur: 18, delay:  -4, op: 0.04  },
-      { text: 'BWM', size:  7, left: 32, top: 55, rot:  10, dur: 11, delay:  -7, op: 0.03  },
-      { text: '◈',   size:  9, left: 18, top: 82, rot: -12, dur: 13, delay:  -2, op: 0.05  },
-      { text: 'BWM', size: 10, left: 76, top: 48, rot:  -8, dur: 16, delay:  -9, op: 0.035 },
-      { text: '◈',   size:  6, left: 48, top: 28, rot:  20, dur: 10, delay:  -5, op: 0.025 },
-      { text: 'BWM', size:  5, left: 88, top: 78, rot:  -5, dur: 14, delay:  -3, op: 0.03  },
-      { text: '◈',   size: 14, left:  8, top: 40, rot:   8, dur: 20, delay: -11, op: 0.035 },
-      { text: 'BWM', size:  8, left: 52, top: 70, rot: -14, dur: 12, delay:  -6, op: 0.025 },
-      { text: '◈',   size:  5, left: 94, top: 22, rot:  -3, dur:  9, delay:  -1, op: 0.045 },
-      { text: 'BWM', size: 11, left: 38, top: 90, rot:  15, dur: 17, delay:  -8, op: 0.03  },
+      { text: 'BWM', size: 13, left:  4, top: 8,  rot: -18, dur: 15, delay:   0, op: 0.10 },
+      { text: '◈',   size: 18, left: 62, top: 12, rot:   5, dur: 18, delay:  -4, op: 0.09 },
+      { text: 'BWM', size:  7, left: 32, top: 55, rot:  10, dur: 11, delay:  -7, op: 0.08 },
+      { text: '◈',   size:  9, left: 18, top: 82, rot: -12, dur: 13, delay:  -2, op: 0.11 },
+      { text: 'BWM', size: 10, left: 76, top: 48, rot:  -8, dur: 16, delay:  -9, op: 0.09 },
+      { text: '◈',   size:  6, left: 48, top: 28, rot:  20, dur: 10, delay:  -5, op: 0.07 },
+      { text: 'BWM', size:  5, left: 88, top: 78, rot:  -5, dur: 14, delay:  -3, op: 0.08 },
+      { text: '◈',   size: 14, left:  8, top: 40, rot:   8, dur: 20, delay: -11, op: 0.09 },
+      { text: 'BWM', size:  8, left: 52, top: 70, rot: -14, dur: 12, delay:  -6, op: 0.07 },
+      { text: '◈',   size:  5, left: 94, top: 22, rot:  -3, dur:  9, delay:  -1, op: 0.10 },
+      { text: 'BWM', size: 11, left: 38, top: 90, rot:  15, dur: 17, delay:  -8, op: 0.08 },
     ];
     items.forEach(function (item) {
       var el = document.createElement('div');
       el.className = 'bwm-bg-el';
       el.textContent = item.text;
       el.style.cssText = [
-        'left:'       + item.left  + '%',
-        'top:'        + item.top   + '%',
-        'font-size:'  + item.size  + 'rem',
-        '--rot:'      + item.rot   + 'deg',
-        '--dur:'      + item.dur   + 's',
-        '--delay:'    + item.delay + 's',
-        '--op:'       + item.op
+        'left:'      + item.left            + '%',
+        'top:'       + item.top             + '%',
+        'font-size:' + item.size            + 'rem',
+        '--rot:'     + item.rot             + 'deg',
+        '--rot-hi:'  + (item.rot + 5)       + 'deg',
+        '--dur:'     + item.dur             + 's',
+        '--delay:'   + item.delay           + 's',
+        '--op:'      + item.op,
+        '--op-hi:'   + (item.op * 1.7).toFixed(3)
       ].join(';');
       container.appendChild(el);
     });

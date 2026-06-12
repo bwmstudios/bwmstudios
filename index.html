@@ -7,6 +7,13 @@
   <meta property="og:title" content="Build With Me | Web Design for Local Businesses · Dubai"/>
   <meta property="og:description" content="Premium websites for Dubai's local service businesses. Starting from 1,100 AED. Live in 7 days."/>
   <title>Build With Me | Web Design for Local Businesses · Dubai</title>
+  <script>
+    (function(){
+      if(localStorage.getItem('bwm-lang')==='en') return;
+      var l=(navigator.language||navigator.userLanguage||'').toLowerCase();
+      if(l.startsWith('ar')){ localStorage.setItem('bwm-lang','ar'); location.replace('index-ar.html'); }
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet"/>
@@ -34,6 +41,7 @@
         <li><a href="#packages">Packages</a></li>
         <li><a href="#process">Process</a></li>
         <li><a href="#contact" class="nav-pill">Get a Quote →</a></li>
+        <li><a href="index-ar.html" class="lang-switch" onclick="localStorage.setItem('bwm-lang','ar')">عربي</a></li>
       </ul>
     </div>
   </nav>
@@ -292,10 +300,10 @@
           <div class="pkg-label">Growth</div>
           <div class="pkg-price-block">
             <span class="pkg-from">from</span>
-            <span class="pkg-num">1,800</span>
+            <span class="pkg-num">2,100</span>
             <span class="pkg-aed">AED</span>
           </div>
-          <div class="pkg-sub">Fully custom design — no templates. Built to get you found on Google, fill your calendar and turn visitors into bookings.</div>
+          <div class="pkg-sub">Fully custom design — no templates. Built to get you found on Google, fill your calendar and turn visitors into bookings. Includes Arabic + English with auto language detection.</div>
           <ul class="pkg-list">
             <li><i>✓</i>Custom design (built from scratch)</li>
             <li><i>✓</i>Up to 6 pages including team profiles</li>
@@ -303,6 +311,7 @@
             <li><i>✓</i>Google Business Profile setup</li>
             <li><i>✓</i>On-page SEO + Google Analytics</li>
             <li><i>✓</i>Expanded gallery (30+ photos)</li>
+            <li><i>✓</i>Arabic + English bilingual site (auto-detected)</li>
             <li><i>✓</i>10-day delivery</li>
             <li><i>✓</i>3 revision rounds</li>
           </ul>
@@ -315,7 +324,7 @@
           <div class="pkg-label">Dominator</div>
           <div class="pkg-price-block">
             <span class="pkg-from">from</span>
-            <span class="pkg-num">2,800</span>
+            <span class="pkg-num">3,200</span>
             <span class="pkg-aed">AED</span>
           </div>
           <div class="pkg-sub">The full build. Premium design, every integration, and everything needed to be the #1 business in your area online.</div>
@@ -327,6 +336,7 @@
             <li><i>✓</i>Google Reviews widget (live)</li>
             <li><i>✓</i>Speed & Core Web Vitals optimisation</li>
             <li><i>✓</i>1 month maintenance included</li>
+            <li><i>✓</i>Arabic + English bilingual site (auto-detected)</li>
             <li><i>✓</i>12–14 day delivery</li>
             <li><i>✓</i>3 revision rounds</li>
           </ul>
@@ -496,6 +506,13 @@
                 <span>+971 50 877 0385</span>
               </div>
             </a>
+            <a href="https://www.instagram.com/bwmstudio.ae/" target="_blank" rel="noopener" class="cmethod">
+              <span class="cmethod-icon">📸</span>
+              <div>
+                <small>Instagram</small>
+                <span>@bwmstudio.ae</span>
+              </div>
+            </a>
           </div>
           <div class="contact-badge">
             <span class="badge-dot"></span>
@@ -543,8 +560,8 @@
                 <select name="package">
                   <option value="" disabled selected>Select a package</option>
                   <option>Starter — 1,100 AED</option>
-                  <option>Growth — 1,800 AED</option>
-                  <option>Dominator — 2,800 AED</option>
+                  <option>Growth — 2,100 AED</option>
+                  <option>Dominator — 3,200 AED</option>
                   <option>Monthly Retainer — 250 AED/mo</option>
                   <option>Not sure yet</option>
                 </select>
@@ -583,20 +600,26 @@
             <a href="mailto:peterbadu971@gmail.com">peterbadu971@gmail.com</a>
             <a href="tel:+971508770385">+971 50 877 0385</a>
           </div>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/bwmstudio.ae/" target="_blank" rel="noopener" class="fsocial-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              <span>@bwmstudio.ae</span>
+            </a>
+          </div>
         </div>
         <div class="footer-nav">
           <div class="footer-col">
             <h5>Navigate</h5>
             <a href="#work">Portfolio</a>
-            <a href="#work">Portfolio</a>
             <a href="#packages">Packages</a>
             <a href="#process">How It Works</a>
+            <a href="#contact">Contact</a>
           </div>
           <div class="footer-col">
             <h5>Packages</h5>
             <a href="#packages">Starter — 1,100 AED</a>
-            <a href="#packages">Growth — 1,800 AED</a>
-            <a href="#packages">Dominator — 2,800 AED</a>
+            <a href="#packages">Growth — 2,100 AED</a>
+            <a href="#packages">Dominator — 3,200 AED</a>
             <a href="#contact">Custom Quote</a>
           </div>
           <div class="footer-col">
