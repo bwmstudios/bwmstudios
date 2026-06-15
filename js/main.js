@@ -217,10 +217,10 @@ document.addEventListener('DOMContentLoaded', function () {
       requestAnimationFrame(function () {
         var y = window.scrollY;
         if (!vrGrid) vrGrid = document.querySelector('.vr-grid-wrap');
-        if (heroBg)    heroBg.style.transform   = 'translateY(' + (y * 0.28) + 'px)';
-        if (heroLeft)  heroLeft.style.transform  = 'translateY(' + (y * 0.12) + 'px)';
-        if (heroRight) heroRight.style.transform = 'translateY(' + (y * 0.06) + 'px)';
-        if (vrGrid)    vrGrid.style.transform    = 'translateY(' + (y * 0.45) + 'px)';
+        if (heroBg)   heroBg.style.transform  = 'translateY(' + (y * 0.28) + 'px)';
+        if (heroLeft) heroLeft.style.transform = 'translateY(' + (y * 0.12) + 'px)';
+        if (vrGrid)   vrGrid.style.transform   = 'translateY(' + (y * 0.45) + 'px)';
+        /* hero-right handled by float+parallax RAF loop below */
         ticking = false;
       });
     }, { passive: true });
@@ -473,6 +473,107 @@ document.addEventListener('DOMContentLoaded', function () {
       el.classList.add('bwm-reveal');
       el.style.transitionDelay = (i % 4 * 0.09) + 's';
       obs.observe(el);
+    });
+  })();
+
+  /* --- Typewriter on hero-tag text --- */
+  (function () {
+    var tag = document.querySelector('.hero-tag span');
+    if (!tag) return;
+    var full = tag.textContent;
+    tag.textContent = '';
+    var cursor = document.createElement('span');
+    cursor.className = 'tw-cursor';
+    cursor.setAttribute('aria-hidden', 'true');
+    tag.after(cursor);
+    var i = 0;
+    function type() {
+      if (i < full.length) { tag.textContent += full[i++]; setTimeout(type, 42); }
+      else { setTimeout(function () { cursor.remove(); }, 2400); }
+    }
+    setTimeout(type, 700);
+  })();
+
+  /* --- Hero-right: smooth float + parallax combined (replaces CSS vr-float) --- */
+  (function () {
+    var el = document.querySelector('.hero-right');
+    if (!el) return;
+    var t0 = performance.now();
+    function tick() {
+      var t      = (performance.now() - t0) / 1000;
+      var floatY = Math.sin(t * (2 * Math.PI / 9)) * 8;
+      el.style.transform = 'translateY(' + (window.scrollY * 0.06 + floatY) + 'px)';
+      requestAnimationFrame(tick);
+    }
+    tick();
+  })();
+
+  /* --- Package price counters (pkg-num / spkg-num) --- */
+  (function () {
+    if (!('IntersectionObserver' in window)) return;
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        obs.unobserve(el);
+        var raw    = el.textContent.replace(/,/g, '').trim();
+        var target = parseInt(raw, 10);
+        if (!target) return;
+        var start = performance.now();
+        var dur   = 1400;
+        (function step(ts) {
+          var t    = Math.min((ts - start) / dur, 1);
+          var ease = 1 - Math.pow(1 - t, 3);
+          el.textContent = Math.round(ease * target).toLocaleString();
+          if (t < 1) { requestAnimationFrame(step); }
+          else { el.textContent = target.toLocaleString(); el.classList.add('counted'); }
+        })(start);
+      });
+    }, { threshold: 0.55 });
+    document.querySelectorAll('.pkg-num, .spkg-num').forEach(function (el) { obs.observe(el); });
+  })();
+
+  /* --- Staggered pkg-list / spkg-list item reveals --- */
+  (function () {
+    if (!('IntersectionObserver' in window)) return;
+    document.querySelectorAll('.pkg-card, .spkg-card').forEach(function (card) {
+      var items = card.querySelectorAll('.pkg-list li, .spkg-list li');
+      if (!items.length) return;
+      items.forEach(function (li) {
+        li.style.opacity   = '0';
+        li.style.transform = 'translateX(-14px)';
+      });
+      var obs = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        obs.disconnect();
+        items.forEach(function (li, i) {
+          setTimeout(function () {
+            li.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            li.style.opacity    = '1';
+            li.style.transform  = 'none';
+          }, i * 60 + 80);
+        });
+      }, { threshold: 0.2 });
+      obs.observe(card);
+    });
+  })();
+
+  /* --- Button ripple on click --- */
+  (function () {
+    document.querySelectorAll('.btn-main').forEach(function (btn) {
+      if (!btn.style.position) btn.style.position = 'relative';
+      btn.addEventListener('click', function (e) {
+        var r    = btn.getBoundingClientRect();
+        var size = Math.max(r.width, r.height) * 1.5;
+        var rip  = document.createElement('span');
+        rip.className = 'btn-ripple';
+        rip.style.width  = size + 'px';
+        rip.style.height = size + 'px';
+        rip.style.left   = (e.clientX - r.left  - size / 2) + 'px';
+        rip.style.top    = (e.clientY - r.top   - size / 2) + 'px';
+        btn.appendChild(rip);
+        setTimeout(function () { rip.remove(); }, 700);
+      });
     });
   })();
 
