@@ -822,3 +822,211 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 4
 @media(max-width:768px) {
   .niche-pkg-grid { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   FUTURISTIC MOTION SYSTEM
+   ============================================================ */
+
+/* ── Scroll progress bar ── */
+#bwm-progress {
+  position: fixed; top: 0; left: 0; z-index: 99999;
+  height: 2px; pointer-events: none; width: 0%;
+  background: linear-gradient(90deg, #81c4ff 0%, #a78bfa 35%, #f472b6 65%, #81c4ff 100%);
+  background-size: 300% 100%;
+  animation: pgress-shift 4s linear infinite;
+  box-shadow: 0 0 12px rgba(129,196,255,0.9), 0 0 40px rgba(129,196,255,0.3);
+  transition: width 0.08s linear;
+}
+@keyframes pgress-shift {
+  0% { background-position: 0 0; }
+  100% { background-position: 300% 0; }
+}
+
+/* ── Custom cursor ── */
+.cursor-dot, .cursor-ring {
+  display: none; pointer-events: none;
+  position: fixed; top: 0; left: 0;
+  will-change: left, top; z-index: 99998;
+  transform: translate(-50%, -50%);
+}
+@media (pointer: fine) {
+  body { cursor: none; }
+  a, button, select, input, textarea, label { cursor: none; }
+  .cursor-dot, .cursor-ring { display: block; }
+}
+.cursor-dot {
+  width: 5px; height: 5px; border-radius: 50%; background: var(--amber);
+  transition: transform 0.15s, opacity 0.2s;
+}
+.cursor-ring {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid rgba(129,196,255,0.4);
+  transition: width 0.28s var(--r), height 0.28s var(--r), border-color 0.28s, background 0.28s;
+}
+.cursor-ring.cur-hover { width: 54px; height: 54px; border-color: rgba(129,196,255,0.7); background: rgba(129,196,255,0.03); }
+.cursor-dot.cur-hover  { transform: translate(-50%,-50%) scale(2.2); opacity: 0.5; }
+
+/* ── Animated gradient accent text ── */
+.h1-accent {
+  background: linear-gradient(90deg, #81c4ff 0%, #d4edff 40%, #a5cfff 70%, #81c4ff 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: accent-move 5s linear infinite;
+}
+.accent {
+  background: linear-gradient(90deg, #81c4ff 0%, #c9e8ff 50%, #81c4ff 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: accent-move 5s linear infinite;
+}
+@keyframes accent-move { to { background-position: 250% center; } }
+
+/* ── H1 line-by-line reveal ── */
+@keyframes h1-line-up {
+  from { transform: translateY(108%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* ── Star particles in hero ── */
+.bwm-star {
+  position: absolute; border-radius: 50%; background: var(--amber);
+  pointer-events: none; will-change: opacity, transform;
+  animation: star-twinkle var(--sdur, 5s) var(--sdelay, 0s) ease-in-out infinite both;
+}
+@keyframes star-twinkle {
+  0%, 100% { opacity: var(--sop, 0.08); transform: scale(1); }
+  50%       { opacity: calc(var(--sop, 0.08) * 2.2); transform: scale(1.8); }
+}
+
+/* ── Button glow on hover ── */
+.btn-main {
+  transition: background 0.2s, gap 0.2s, transform 0.3s var(--r), box-shadow 0.3s;
+}
+.btn-main:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(129,196,255,0.35), 0 0 80px rgba(129,196,255,0.08);
+}
+.btn-main.btn-full:hover { transform: none; }
+
+/* ── Featured pkg card glow ── */
+.pkg-featured {
+  z-index: 2;
+  box-shadow: 0 0 60px rgba(129,196,255,0.12), 0 0 120px rgba(129,196,255,0.04);
+}
+.pkg-cta-featured { box-shadow: 0 4px 24px rgba(129,196,255,0.28); }
+.pkg-cta-featured:hover { box-shadow: 0 8px 40px rgba(129,196,255,0.45) !important; }
+
+/* ── Card hover enhancements ── */
+.pkg-card { transition: background 0.2s, transform 0.38s var(--r), box-shadow 0.38s; }
+.why-card { transition: background 0.2s, transform 0.3s var(--r), box-shadow 0.3s; }
+.why-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(129,196,255,0.08); }
+.why-card.why-card-gold:hover { box-shadow: 0 12px 32px rgba(129,196,255,0.13); }
+.process-card { transition: transform 0.3s var(--r); cursor: default; }
+.process-card:hover { transform: translateY(-5px); }
+
+/* ── Process number glow ── */
+.process-num { transition: color 0.4s, text-shadow 0.4s; }
+.process-card:hover .process-num { color: rgba(129,196,255,0.32); text-shadow: 0 0 40px rgba(129,196,255,0.45); }
+
+/* ── Hero card glow ── */
+.hcard-1 { box-shadow: 0 8px 40px rgba(0,0,0,0.5); }
+.hero-cards-stack:hover .hcard-1 { box-shadow: 0 16px 50px rgba(0,0,0,0.6), 0 0 40px rgba(129,196,255,0.14); }
+
+/* ── Section chip shimmer ── */
+.section-chip { position: relative; overflow: hidden; }
+.section-chip::after {
+  content: ''; position: absolute; top: 0; bottom: 0; left: -60%; width: 55%;
+  background: linear-gradient(90deg, transparent, rgba(129,196,255,0.28), transparent);
+  animation: chip-shine 5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes chip-shine {
+  0%      { left: -60%; }
+  50%, 100% { left: 130%; }
+}
+
+/* ── Dot-grid overlay on packages section ── */
+.packages { position: relative; }
+.packages::after {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(129,196,255,0.05) 1px, transparent 1px);
+  background-size: 36px 36px; pointer-events: none; z-index: 0;
+}
+.packages > .container { position: relative; z-index: 1; }
+
+/* ── Float button pulse ── */
+@keyframes wa-glow {
+  0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.3); }
+  50% { box-shadow: 0 4px 35px rgba(37,211,102,0.55), 0 0 60px rgba(37,211,102,0.08); }
+}
+@keyframes ig-glow {
+  0%, 100% { box-shadow: 0 4px 20px rgba(193,53,132,0.35); }
+  50% { box-shadow: 0 4px 35px rgba(193,53,132,0.6), 0 0 60px rgba(193,53,132,0.1); }
+}
+.wa-float { animation: wa-glow 3s ease-in-out infinite; }
+.wa-float:hover { animation: none; box-shadow: 0 8px 30px rgba(37,211,102,0.5); }
+.ig-float { animation: ig-glow 3s ease-in-out infinite 1.5s; }
+.ig-float:hover { animation: none; box-shadow: 0 8px 30px rgba(193,53,132,0.6); }
+
+/* ── Nav link reveal underline ── */
+.nav-links a:not(.nav-pill):not(.lang-switch) { position: relative; }
+.nav-links a:not(.nav-pill):not(.lang-switch)::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 1px; background: var(--amber);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s var(--r);
+}
+.nav-links a:not(.nav-pill):not(.lang-switch):hover::after { transform: scaleX(1); }
+
+/* ── Logo mark glow ── */
+.logo-mark { transition: box-shadow 0.3s; }
+.logo:hover .logo-mark { box-shadow: 0 0 24px rgba(129,196,255,0.55); }
+
+/* ── Ticker glow ── */
+.ticker { box-shadow: 0 0 50px rgba(129,196,255,0.18); }
+
+/* ── Contact method slide ── */
+.cmethod { transition: all 0.25s var(--r); }
+.cmethod:hover { transform: translateX(5px); box-shadow: 0 4px 20px rgba(129,196,255,0.07); }
+
+/* ── Promise item slide ── */
+.promise-item { transition: transform 0.22s; }
+.promise-item:hover { transform: translateX(5px); }
+
+/* ── Hero tag animated border ── */
+@keyframes tag-border-pulse {
+  0%, 100% { border-color: rgba(129,196,255,0.13); }
+  50% { border-color: rgba(129,196,255,0.35); }
+}
+.hero-tag { animation: tag-border-pulse 3s ease-in-out infinite; }
+
+/* ── Metric glow after count ── */
+.metric-val.counted { text-shadow: 0 0 30px rgba(129,196,255,0.22); }
+
+/* ── wc-yours hover glow ── */
+.wc-yours { transition: border-color 0.4s, box-shadow 0.4s; }
+.wc-yours:hover {
+  border-color: rgba(129,196,255,0.5) !important;
+  box-shadow: inset 0 0 80px rgba(129,196,255,0.04), 0 0 40px rgba(129,196,255,0.07) !important;
+}
+
+/* ── Scan-line texture on hero ── */
+.hero::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(129,196,255,0.012) 2px,
+    rgba(129,196,255,0.012) 4px
+  );
+}
+
+/* ── Section entrance reveal ── */
+.bwm-reveal {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.75s var(--r), transform 0.75s var(--r);
+}
+.bwm-reveal.in-view { opacity: 1; transform: none; }
