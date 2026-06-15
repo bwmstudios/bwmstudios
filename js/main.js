@@ -190,36 +190,40 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { passive: true });
   })();
 
-  /* --- Custom cursor --- */
+  /* --- VR perspective grid injection --- */
   (function () {
-    if (!window.matchMedia('(pointer: fine)').matches) return;
-    var dot  = document.createElement('div');
-    var ring = document.createElement('div');
-    dot.className  = 'cursor-dot';
-    ring.className = 'cursor-ring';
-    document.body.appendChild(dot);
-    document.body.appendChild(ring);
+    var hero = document.querySelector('section.hero');
+    if (!hero) return;
+    var gridWrap = document.createElement('div');
+    gridWrap.className = 'vr-grid-wrap';
+    gridWrap.setAttribute('aria-hidden', 'true');
+    var grid = document.createElement('div');
+    grid.className = 'vr-grid';
+    gridWrap.appendChild(grid);
+    hero.insertBefore(gridWrap, hero.firstChild);
+  })();
 
-    var mx = -200, my = -200, rx = -200, ry = -200;
+  /* --- Parallax scroll layers --- */
+  (function () {
+    var heroBg   = document.querySelector('.hero-bg-anim');
+    var heroLeft = document.querySelector('.hero-left');
+    var heroRight = document.querySelector('.hero-right');
+    var vrGrid   = null; // set after injection above
+    var ticking  = false;
 
-    document.addEventListener('mousemove', function (e) {
-      mx = e.clientX; my = e.clientY;
-      dot.style.left = mx + 'px';
-      dot.style.top  = my + 'px';
-    });
-
-    (function animRing() {
-      rx += (mx - rx) * 0.11;
-      ry += (my - ry) * 0.11;
-      ring.style.left = rx + 'px';
-      ring.style.top  = ry + 'px';
-      requestAnimationFrame(animRing);
-    })();
-
-    document.querySelectorAll('a, button, .work-card, .pkg-card, .why-card, .cmethod, .wa-float, .ig-float').forEach(function (el) {
-      el.addEventListener('mouseenter', function () { ring.classList.add('cur-hover'); dot.classList.add('cur-hover'); });
-      el.addEventListener('mouseleave', function () { ring.classList.remove('cur-hover'); dot.classList.remove('cur-hover'); });
-    });
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        var y = window.scrollY;
+        if (!vrGrid) vrGrid = document.querySelector('.vr-grid-wrap');
+        if (heroBg)    heroBg.style.transform   = 'translateY(' + (y * 0.28) + 'px)';
+        if (heroLeft)  heroLeft.style.transform  = 'translateY(' + (y * 0.12) + 'px)';
+        if (heroRight) heroRight.style.transform = 'translateY(' + (y * 0.06) + 'px)';
+        if (vrGrid)    vrGrid.style.transform    = 'translateY(' + (y * 0.45) + 'px)';
+        ticking = false;
+      });
+    }, { passive: true });
   })();
 
   /* --- Hero H1 line-by-line reveal --- */
@@ -407,22 +411,29 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 3200);
   }
 
-  /* --- 3D tilt on package cards --- */
+  /* --- VR 3D tilt on cards --- */
   (function () {
     if (!window.matchMedia('(pointer: fine)').matches) return;
-    document.querySelectorAll('.pkg-card').forEach(function (card) {
-      card.addEventListener('mousemove', function (e) {
-        var r   = card.getBoundingClientRect();
-        var x   = ((e.clientX - r.left) / r.width  - 0.5) * 10;
-        var y   = ((e.clientY - r.top)  / r.height - 0.5) * 10;
-        card.style.transform = 'perspective(900px) rotateY(' + x + 'deg) rotateX(' + (-y) + 'deg) translateZ(6px)';
-        card.style.transition = 'transform 0.05s linear, background 0.2s, box-shadow 0.38s';
+    function addTilt(selector, depth, lift) {
+      document.querySelectorAll(selector).forEach(function (card) {
+        card.style.transformStyle = 'preserve-3d';
+        card.addEventListener('mousemove', function (e) {
+          var r = card.getBoundingClientRect();
+          var x = ((e.clientX - r.left) / r.width  - 0.5) * depth;
+          var y = ((e.clientY - r.top)  / r.height - 0.5) * depth;
+          card.style.transform  = 'perspective(1000px) rotateY(' + x + 'deg) rotateX(' + (-y) + 'deg) translateZ(' + lift + 'px)';
+          card.style.transition = 'transform 0.06s linear';
+        });
+        card.addEventListener('mouseleave', function () {
+          card.style.transition = 'transform 0.6s cubic-bezier(0.22,1,0.36,1)';
+          card.style.transform  = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateZ(0)';
+        });
       });
-      card.addEventListener('mouseleave', function () {
-        card.style.transition = 'transform 0.55s var(--r), background 0.2s, box-shadow 0.38s';
-        card.style.transform  = '';
-      });
-    });
+    }
+    addTilt('.pkg-card',   12, 10);
+    addTilt('.why-card',   10,  8);
+    addTilt('.hcard',       6,  6);
+    addTilt('.process-card', 7,  5);
   })();
 
   /* --- Magnetic buttons --- */

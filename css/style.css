@@ -842,29 +842,9 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 4
   100% { background-position: 300% 0; }
 }
 
-/* ── Custom cursor ── */
-.cursor-dot, .cursor-ring {
-  display: none; pointer-events: none;
-  position: fixed; top: 0; left: 0;
-  will-change: left, top; z-index: 99998;
-  transform: translate(-50%, -50%);
-}
-@media (pointer: fine) {
-  body { cursor: none; }
-  a, button, select, input, textarea, label { cursor: none; }
-  .cursor-dot, .cursor-ring { display: block; }
-}
-.cursor-dot {
-  width: 5px; height: 5px; border-radius: 50%; background: var(--amber);
-  transition: transform 0.15s, opacity 0.2s;
-}
-.cursor-ring {
-  width: 36px; height: 36px; border-radius: 50%;
-  border: 1px solid rgba(129,196,255,0.4);
-  transition: width 0.28s var(--r), height 0.28s var(--r), border-color 0.28s, background 0.28s;
-}
-.cursor-ring.cur-hover { width: 54px; height: 54px; border-color: rgba(129,196,255,0.7); background: rgba(129,196,255,0.03); }
-.cursor-dot.cur-hover  { transform: translate(-50%,-50%) scale(2.2); opacity: 0.5; }
+/* ── System cursor (no custom cursor) ── */
+body, * { cursor: auto; }
+a, button, select, input, textarea, label, [onclick] { cursor: pointer; }
 
 /* ── Animated gradient accent text ── */
 .h1-accent {
@@ -1024,9 +1004,243 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 4
   );
 }
 
-/* ── Section entrance reveal ── */
+/* ── Section entrance reveal — depth zoom ── */
 .bwm-reveal {
-  opacity: 0; transform: translateY(32px);
-  transition: opacity 0.75s var(--r), transform 0.75s var(--r);
+  opacity: 0;
+  transform: scale(0.93) translateY(22px);
+  filter: blur(5px);
+  transition: opacity 0.85s var(--r), transform 0.85s var(--r), filter 0.85s;
 }
-.bwm-reveal.in-view { opacity: 1; transform: none; }
+.bwm-reveal.in-view { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+
+/* ============================================================
+   VR / SPATIAL UI SYSTEM
+   ============================================================ */
+
+/* ── Perspective grid (injected into hero via JS) ── */
+.vr-grid-wrap {
+  position: absolute; inset: 0; z-index: 0;
+  pointer-events: none; overflow: hidden;
+}
+.vr-grid {
+  position: absolute; bottom: -10%; left: -30%; right: -30%; height: 70%;
+  background-image:
+    linear-gradient(rgba(129,196,255,0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(129,196,255,0.09) 1px, transparent 1px);
+  background-size: 90px 90px;
+  transform: perspective(450px) rotateX(70deg);
+  transform-origin: bottom center;
+  animation: vr-grid-move 5s linear infinite;
+  mask-image: linear-gradient(to top, black 0%, rgba(0,0,0,0.4) 40%, transparent 80%);
+  -webkit-mask-image: linear-gradient(to top, black 0%, rgba(0,0,0,0.4) 40%, transparent 80%);
+}
+.vr-grid::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(129,196,255,0.08) 0%, transparent 70%);
+}
+@keyframes vr-grid-move {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 90px; }
+}
+
+/* ── VR scan sweep on hero ── */
+.hero::before {
+  content: ''; position: absolute; left: 0; right: 0; top: 0; height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(129,196,255,0) 10%, rgba(129,196,255,0.7) 50%, rgba(167,139,250,0.5) 70%, transparent 100%);
+  animation: vr-scan 8s ease-in-out infinite 3s;
+  pointer-events: none; z-index: 3;
+  box-shadow: 0 0 24px rgba(129,196,255,0.5), 0 0 60px rgba(129,196,255,0.15);
+}
+@keyframes vr-scan {
+  0%       { top: 0%;   opacity: 0; }
+  5%       { opacity: 1; }
+  95%      { opacity: 1; }
+  100%     { top: 100%; opacity: 0; }
+}
+
+/* ── Hero-right floating in depth ── */
+@keyframes vr-float {
+  0%, 100% { transform: translateY(0px)   rotate3d(0.2, 0, 1,  0deg); }
+  33%      { transform: translateY(-14px) rotate3d(0.2, 0, 1,  1.2deg); }
+  66%      { transform: translateY(-7px)  rotate3d(0.2, 0, 1, -0.8deg); }
+}
+.hero-right { animation: vr-float 9s ease-in-out infinite; }
+
+/* ── Holographic featured package card ── */
+@keyframes holo-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 1px rgba(129,196,255,0.9), 0 0 30px rgba(129,196,255,0.35), 0 0 90px rgba(129,196,255,0.08);
+    border-top-color: #81c4ff;
+  }
+  33% {
+    box-shadow: 0 0 0 1px rgba(167,139,250,0.9), 0 0 30px rgba(167,139,250,0.35), 0 0 90px rgba(167,139,250,0.08);
+    border-top-color: #a78bfa;
+  }
+  66% {
+    box-shadow: 0 0 0 1px rgba(244,114,182,0.9), 0 0 30px rgba(244,114,182,0.35), 0 0 90px rgba(244,114,182,0.08);
+    border-top-color: #f472b6;
+  }
+}
+.pkg-featured { animation: holo-glow 4s ease-in-out infinite; }
+.pkg-popular {
+  background: linear-gradient(90deg, var(--amber), #a78bfa, #f472b6, var(--amber));
+  background-size: 200% auto;
+  animation: accent-move 3s linear infinite;
+  color: white;
+}
+
+/* ── Glassmorphism on package cards ── */
+.pkg-card {
+  background: rgba(12, 22, 42, 0.75) !important;
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border: 1px solid rgba(129,196,255,0.1) !important;
+}
+.pkg-card:hover {
+  background: rgba(18, 32, 56, 0.85) !important;
+  border-color: rgba(129,196,255,0.28) !important;
+}
+.pkg-card.pkg-featured {
+  background: rgba(6, 12, 28, 0.88) !important;
+  border-color: rgba(129,196,255,0.15) !important;
+}
+
+/* ── Glassmorphism on why-cards ── */
+.why-card {
+  background: rgba(12, 22, 42, 0.65) !important;
+  backdrop-filter: blur(10px) saturate(1.3);
+  -webkit-backdrop-filter: blur(10px) saturate(1.3);
+  border: 1px solid rgba(129,196,255,0.1) !important;
+}
+.why-card:hover {
+  background: rgba(18, 32, 56, 0.8) !important;
+  border-color: rgba(129,196,255,0.3) !important;
+}
+.why-card.why-card-gold {
+  background: rgba(14, 26, 50, 0.75) !important;
+  border-top: 1px solid rgba(129,196,255,0.25) !important;
+}
+
+/* ── Neon animated top border on sections ── */
+.packages::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #81c4ff 20%, #a78bfa 50%, #f472b6 80%, transparent 100%);
+  background-size: 300% 100%;
+  animation: neon-sweep 5s linear infinite;
+  z-index: 2; opacity: 0.9;
+}
+.why { position: relative; }
+.why::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #a78bfa 20%, #81c4ff 50%, #a78bfa 80%, transparent 100%);
+  background-size: 300% 100%;
+  animation: neon-sweep 5s linear infinite reverse;
+  z-index: 2; opacity: 0.7;
+}
+@keyframes neon-sweep {
+  0%   { background-position: 0 0; }
+  100% { background-position: 300% 0; }
+}
+
+/* ── VR process number style ── */
+.process-num {
+  color: transparent;
+  background: linear-gradient(135deg, rgba(129,196,255,0.22) 0%, rgba(167,139,250,0.15) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: filter 0.4s, background 0.4s;
+}
+.process-card:hover .process-num {
+  background: linear-gradient(135deg, #81c4ff 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 0 14px rgba(129,196,255,0.7));
+}
+
+/* ── Hero card VR glow border ── */
+.hcard-1 {
+  border-top-color: var(--amber);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(129,196,255,0.1);
+}
+.hero-cards-stack:hover .hcard-1 {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 40px rgba(129,196,255,0.18), 0 0 0 1px rgba(129,196,255,0.3);
+}
+.hcard {
+  border: 1px solid rgba(129,196,255,0.12);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* ── hcard-bar animate in VR style ── */
+@keyframes bar-pulse {
+  0%, 100% { opacity: 0.6; box-shadow: none; }
+  50%       { opacity: 1;   box-shadow: 0 0 10px rgba(129,196,255,0.5); }
+}
+.hcard-bar { animation: bar-pulse 3s ease-in-out infinite; }
+
+/* ── VR neon glow on pkg-list checkmarks ── */
+.pkg-list i {
+  text-shadow: 0 0 8px rgba(231,34,46,0.6);
+}
+
+/* ── Ticker enhanced VR ── */
+.ticker {
+  background: linear-gradient(90deg, #0e1e38, #152540, #0e1e38);
+  border-top: 1px solid rgba(129,196,255,0.15);
+  border-bottom: 1px solid rgba(129,196,255,0.15);
+  box-shadow: 0 0 60px rgba(129,196,255,0.2);
+}
+.ticker-track { color: rgba(129,196,255,0.9); }
+.ticker-track em { color: #a78bfa; opacity: 0.8; }
+
+/* ── Contact form VR inputs ── */
+.fg input:focus, .fg select:focus, .fg textarea:focus {
+  border-color: rgba(129,196,255,0.5) !important;
+  background: rgba(129,196,255,0.04) !important;
+  box-shadow: 0 0 20px rgba(129,196,255,0.08), inset 0 0 20px rgba(129,196,255,0.02);
+}
+
+/* ── cmethod VR glow ── */
+.cmethod:hover {
+  border-color: rgba(129,196,255,0.4) !important;
+  box-shadow: 0 0 20px rgba(129,196,255,0.07), inset 0 0 30px rgba(129,196,255,0.02);
+}
+
+/* ── Section chip VR color ── */
+.section-chip {
+  background: rgba(129,196,255,0.05);
+  border: 1px solid rgba(129,196,255,0.2);
+  box-shadow: 0 0 20px rgba(129,196,255,0.06), inset 0 0 20px rgba(129,196,255,0.02);
+}
+
+/* ── Promise check VR ── */
+.promise-check {
+  box-shadow: 0 0 10px rgba(231,34,46,0.2);
+}
+
+/* ── Background: moving aurora behind entire page ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 40% at 20% 10%,  rgba(129,196,255,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 30% at 80% 80%,  rgba(167,139,250,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 60% 50%,  rgba(244,114,182,0.03) 0%, transparent 60%);
+  animation: aurora-drift 20s ease-in-out infinite alternate;
+}
+@keyframes aurora-drift {
+  0%   { transform: translate(0, 0)  scale(1); }
+  33%  { transform: translate(3%, 2%) scale(1.03); }
+  66%  { transform: translate(-2%, 4%) scale(0.98); }
+  100% { transform: translate(4%, -2%) scale(1.02); }
+}
+
+/* ── Mobile VR adjustments ── */
+@media (max-width: 768px) {
+  .vr-grid { transform: perspective(300px) rotateX(65deg); }
+  .hero-right { animation: none; }
+  .pkg-card, .why-card { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(12, 22, 42, 0.9) !important; }
+}
