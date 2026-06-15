@@ -33,7 +33,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; font-size: 18px; }
 body {
   font-family: var(--font-b);
   background: var(--bg);
@@ -1344,3 +1344,41 @@ h2 { text-shadow: 0 2px 18px rgba(0,0,0,0.45); }
 
 /* ── hero-right: JS handles float + parallax combined ── */
 .hero-right { animation: none !important; }
+
+/* ══════════════════════════════════
+   LARGER TEXT  (html base = 18 px)
+══════════════════════════════════ */
+
+/* h1 would hit 108 px at 6 rem × 18 px — pull max back a little */
+h1 { font-size: clamp(2.8rem, 6.5vw, 4.8rem); }
+
+/* Paragraph-level / card-body text: lock to a comfortable 18-19 px */
+.hero-p          { font-size: 1.08rem; line-height: 1.95; }
+.section-head p  { font-size: 1.08rem; }
+.why-left p      { font-size: 1.05rem; }
+.why-card p      { font-size: 1rem;    line-height: 1.85; }
+.process-card p  { font-size: 1rem;    line-height: 1.9; }
+.niche-info p    { font-size: 1.05rem; }
+.pkg-sub         { font-size: 1rem; }
+.pkg-list li     { font-size: 1rem;    line-height: 1.65; }
+.contact-left > p{ font-size: 1.05rem; }
+.testi-card p    { font-size: 1.02rem; }
+.promise-item    { font-size: 0.9rem; }
+
+/* Card & section sub-headings */
+h3               { font-size: 1.5rem; }
+h4               { font-size: 1.15rem; }
+.process-card h3 { font-size: 1.35rem; }
+.niche-info h3   { font-size: 1.2rem; }
+.why-card h4     { font-size: 1.1rem; }
+.wc-overlay h3   { font-size: 1.35rem; }
+.wc-overlay p    { font-size: 0.92rem; }
+
+/* Nav & chip labels: slight bump from 0.72 rem */
+.nav-links a     { font-size: 0.78rem; }
+.section-chip    { font-size: 0.72rem; }
+
+/* Mobile: keep base comfortable on small screens */
+@media (max-width: 600px) {
+  html { font-size: 16px; }
+}
