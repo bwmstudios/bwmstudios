@@ -476,22 +476,21 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   })();
 
-  /* --- Typewriter on hero-tag text --- */
+  /* --- TextType on .h1-accent — cycles through hero action words --- */
   (function () {
-    var tag = document.querySelector('.hero-tag span');
-    if (!tag) return;
-    var full = tag.textContent;
-    tag.textContent = '';
-    var cursor = document.createElement('span');
-    cursor.className = 'tw-cursor';
-    cursor.setAttribute('aria-hidden', 'true');
-    tag.after(cursor);
-    var i = 0;
-    function type() {
-      if (i < full.length) { tag.textContent += full[i++]; setTimeout(type, 42); }
-      else { setTimeout(function () { cursor.remove(); }, 2400); }
-    }
-    setTimeout(type, 700);
+    var accent = document.querySelector('.h1-accent');
+    if (!accent || typeof TextType === 'undefined') return;
+    new TextType(accent, {
+      text: ['Work.', 'Convert.', 'Grow.', 'Win.'],
+      typingSpeed: 80,
+      deletingSpeed: 45,
+      pauseDuration: 2200,
+      initialDelay: 1500,
+      loop: true,
+      showCursor: true,
+      cursorCharacter: '●',
+      cursorClassName: 'h1-accent-cursor'
+    });
   })();
 
   /* --- Hero-right: smooth float + parallax combined (replaces CSS vr-float) --- */
@@ -555,6 +554,16 @@ document.addEventListener('DOMContentLoaded', function () {
         });
       }, { threshold: 0.2 });
       obs.observe(card);
+    });
+  })();
+
+  /* --- ScrollFloat on section headings --- */
+  (function () {
+    if (typeof ScrollFloat === 'undefined') return;
+    ScrollFloat('.section-head h2, .why-inner h2, .contact-left h2', {
+      animationDuration: 1,
+      stagger: 0.06,
+      threshold: 0.2
     });
   })();
 

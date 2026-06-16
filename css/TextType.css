@@ -1,0 +1,40 @@
+.text-type {
+  display: inline-block;
+  white-space: pre-wrap;
+}
+
+.text-type__cursor {
+  margin-left: 0.1rem;
+  display: inline-block;
+  opacity: 1;
+  animation: text-type-blink var(--tt-blink-dur, 0.5s) ease-in-out infinite alternate;
+}
+
+.text-type__cursor--hidden {
+  display: none;
+}
+
+@keyframes text-type-blink {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* When TextType is inside .h1-accent the content span must inherit
+   the gradient background-clip so the text stays gradient-coloured  */
+.h1-accent .text-type__content {
+  background: inherit;
+  background-size: inherit;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Cursor matches amber accent colour (not gradient — gradient on a
+   single-char cursor looks odd); sits outside the clip region     */
+.h1-accent-cursor {
+  -webkit-text-fill-color: initial;
+  color: #81c4ff;
+  margin-left: 0.15rem;
+  font-size: 0.6em;
+  vertical-align: middle;
+}
