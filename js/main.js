@@ -557,6 +557,35 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   })();
 
+  /* --- ElectricBorder on featured package card + main hero card --- */
+  (function () {
+    if (typeof ElectricBorder === 'undefined') return;
+
+    /* Featured package card — replaces the old holo-glow animation */
+    var featCard = document.querySelector('.pkg-card.pkg-featured');
+    if (featCard) {
+      new ElectricBorder(featCard, {
+        color:        '#81c4ff',
+        speed:        0.9,
+        chaos:        0.12,
+        borderRadius: 0,
+        thickness:    2
+      });
+    }
+
+    /* Main hero floating card */
+    var heroCard = document.querySelector('.hcard-1');
+    if (heroCard) {
+      new ElectricBorder(heroCard, {
+        color:        '#81c4ff',
+        speed:        1.2,
+        chaos:        0.09,
+        borderRadius: 0,
+        thickness:    1.5
+      });
+    }
+  })();
+
   /* --- ScrollFloat on section headings --- */
   (function () {
     if (typeof ScrollFloat === 'undefined') return;
