@@ -557,21 +557,24 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   })();
 
-  /* --- ElectricBorder on featured package card + main hero card --- */
+  /* --- ElectricBorder on all package cards + hero card + work-grid --- */
   (function () {
     if (typeof ElectricBorder === 'undefined') return;
 
-    /* Featured package card — replaces the old holo-glow animation */
-    var featCard = document.querySelector('.pkg-card.pkg-featured');
-    if (featCard) {
-      new ElectricBorder(featCard, {
+    /* All three package cards — featured gets more drama */
+    document.querySelectorAll('.pkg-card').forEach(function (card) {
+      var isFeat = card.classList.contains('pkg-featured');
+      new ElectricBorder(card, {
         color:        '#81c4ff',
-        speed:        0.9,
-        chaos:        0.12,
-        borderRadius: 0,
-        thickness:    2
+        speed:        isFeat ? 1.1 : 0.7,
+        chaos:        isFeat ? 0.22 : 0.11,
+        thickness:    isFeat ? 3   : 1.8,
+        glowBlur:     isFeat ? 22  : 11,
+        displacement: isFeat ? 55  : 35,
+        borderOffset: 55,
+        borderRadius: 0
       });
-    }
+    });
 
     /* Main hero floating card */
     var heroCard = document.querySelector('.hcard-1');
@@ -580,10 +583,39 @@ document.addEventListener('DOMContentLoaded', function () {
         color:        '#81c4ff',
         speed:        1.2,
         chaos:        0.09,
-        borderRadius: 0,
-        thickness:    1.5
+        thickness:    1.5,
+        glowBlur:     14,
+        displacement: 45,
+        borderOffset: 45,
+        borderRadius: 0
       });
     }
+
+    /* Work-grid cards — electric border appears on hover, drawn inside
+       the card (borderOffset:0) so overflow:hidden is not disturbed   */
+    document.querySelectorAll('.work-card').forEach(function (card) {
+      var eb = new ElectricBorder(card, {
+        color:        '#81c4ff',
+        speed:        2.0,
+        chaos:        0.14,
+        thickness:    2.5,
+        glowBlur:     18,
+        displacement: 12,
+        borderOffset: 0,
+        borderRadius: 0
+      });
+      eb.pause(); /* start hidden */
+
+      var leaveTimer = null;
+      card.addEventListener('mouseenter', function () {
+        if (leaveTimer) { clearTimeout(leaveTimer); leaveTimer = null; }
+        eb.resume();
+      });
+      card.addEventListener('mouseleave', function () {
+        /* Delay pause so CSS fade-out transition completes first */
+        leaveTimer = setTimeout(function () { eb.pause(); leaveTimer = null; }, 320);
+      });
+    });
   })();
 
   /* --- ScrollFloat on section headings --- */

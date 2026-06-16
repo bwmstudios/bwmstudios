@@ -65,3 +65,31 @@
 
 /* Disable the old holo-glow on the featured package card — replaced */
 .pkg-featured.electric-border { animation: none; box-shadow: none; }
+
+/* ── Work-card overrides ────────────────────────────────────── */
+/* Canvas drawn inside card (borderOffset=0), keep overflow for
+   the video scale clip. Canvas sits above overlay (z-index:5).  */
+.work-card.electric-border { overflow: hidden !important; }
+.work-card .eb-canvas-container { z-index: 8; }
+.work-card .eb-layers { z-index: 6; }
+
+/* No background glow on work-cards — keep the video visible */
+.work-card .eb-background-glow { display: none; }
+
+/* Glow layers use full opacity since they're inside the card */
+.work-card .eb-glow-1 {
+  border-color: color-mix(in srgb, var(--electric-border-color, #81c4ff) 45%, transparent);
+}
+.work-card .eb-glow-2 {
+  border-color: color-mix(in srgb, var(--electric-border-color, #81c4ff) 70%, transparent);
+  filter: blur(3px);
+}
+
+/* Fade in/out both canvas and glow layers on hover */
+.work-card .eb-layers,
+.work-card .eb-canvas-container {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.work-card:hover .eb-layers,
+.work-card:hover .eb-canvas-container { opacity: 1; }
