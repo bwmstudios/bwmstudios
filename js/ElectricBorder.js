@@ -1,22 +1,22 @@
-/* ElectricBorder — vanilla JS port of @BalintFerenczy's component
-   Full port of the noise algorithm + canvas rendering. No dependencies.
+/* ElectricBorder — vanilla JS port of @BalintFerenczy's React Bits component
+   Credit: https://codepen.io/BalintFerenczy/pen/KwdoyEN
+   No dependencies. Synced with React Bits JS+CSS variant.
 
    new ElectricBorder(element, {
      color         '#5227FF'   stroke + glow colour
      speed         1           animation speed multiplier
-     chaos         0.12        noise amplitude
+     chaos         0.12        distortion intensity
      borderRadius  24          corner radius in px (match your CSS)
-     thickness     2           stroke lineWidth
-     glowBlur      12          canvas shadowBlur intensity
+     thickness     2           stroke lineWidth  (React Bits hardcodes 1 — we expose it)
+     glowBlur      12          canvas shadowBlur (extra glow on the stroke itself)
      borderOffset  60          px canvas extends beyond element on each side
-                               (set 0 for elements with overflow:hidden)
-     displacement  60          max px the noise can shift the line
+                               (pass 0 for elements with overflow:hidden)
+     displacement  60          max px noise can shift the line from the perimeter
    })
 
-   Methods:
-     .pause()    — stop RAF, clear canvas (use for hover-only borders)
-     .resume()   — restart RAF
-     .destroy()  — full cleanup                                        */
+   .pause()  — stop RAF + clear canvas (hover-only use)
+   .resume() — restart RAF
+   .destroy()— full DOM + RAF cleanup                                  */
 
 class ElectricBorder {
   constructor(element, options) {
@@ -105,9 +105,11 @@ class ElectricBorder {
     this._H   = h;
   }
 
-  /* ── Noise functions ───────────────────────────────────────── */
+  /* ── Noise functions — faithful to React Bits original ─────── */
   _rnd(x) {
-    return ((Math.sin(x * 12.9898) * 43758.5453) % 1 + 1) % 1;
+    /* Matches original exactly: result can be negative, giving
+       bidirectional oscillation on both sides of the border     */
+    return (Math.sin(x * 12.9898) * 43758.5453) % 1;
   }
 
   _noise2D(x, y) {

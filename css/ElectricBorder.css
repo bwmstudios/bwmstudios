@@ -1,14 +1,14 @@
 /* ElectricBorder — canvas-based animated noise border
-   Ported from @BalintFerenczy / React Bits                    */
+   Vanilla JS port of @BalintFerenczy / React Bits (JS+CSS variant)
+   Credit: https://codepen.io/BalintFerenczy/pen/KwdoyEN             */
 
 .electric-border {
   position: relative;
   isolation: isolate;
-  overflow: visible !important;   /* canvas bleeds outside bounds */
+  overflow: visible !important;   /* canvas bleeds borderOffset px outside */
 }
 
-/* Centered absolutely-positioned canvas — extends borderOffset px
-   beyond the element on every side                             */
+/* ── Canvas wrapper ─────────────────────────────────────────── */
 .eb-canvas-container {
   position: absolute;
   top: 50%;
@@ -20,7 +20,7 @@
 
 .eb-canvas { display: block; }
 
-/* Glow layers sit at card edges, behind card content */
+/* ── Glow layers (React Bits CSS, oklch → color-mix fallback) ── */
 .eb-layers {
   position: absolute;
   inset: 0;
@@ -39,44 +39,51 @@
   box-sizing: border-box;
 }
 
+/* 60 % opacity solid border — colour-mix replaces oklch relative colour */
 .eb-glow-1 {
-  border: 2px solid color-mix(in srgb, var(--electric-border-color, #81c4ff) 55%, transparent);
+  border: 2px solid color-mix(in srgb, var(--electric-border-color, #81c4ff) 60%, transparent);
   filter: blur(1px);
 }
 
+/* Full-opacity blurred border for the outer glow halo */
 .eb-glow-2 {
   border: 2px solid var(--electric-border-color, #81c4ff);
-  filter: blur(5px);
-  opacity: 0.7;
+  filter: blur(4px);
 }
 
+/* Soft ambient background bloom — linear-gradient matching React Bits */
 .eb-background-glow {
   z-index: -1;
-  transform: scale(1.15);
-  filter: blur(36px);
-  opacity: 0.22;
-  background: radial-gradient(
-    ellipse at center,
+  transform: scale(1.1);
+  filter: blur(32px);
+  opacity: 0.3;
+  background: linear-gradient(
+    -30deg,
     var(--electric-border-color, #81c4ff),
-    transparent 70%
+    transparent,
+    var(--electric-border-color, #81c4ff)
   );
 }
 
+/* ── Existing card content sits above glow layers ───────────── */
+/* The React Bits version uses an .eb-content wrapper for this.
+   For our static port we target specific badge/overlay elements. */
+.electric-border .pkg-popular { position: absolute; z-index: 2; }
 
-/* Disable the old holo-glow on the featured package card — replaced */
+/* ── Package card overrides ─────────────────────────────────── */
 .pkg-featured.electric-border { animation: none; box-shadow: none; }
 
 /* ── Work-card overrides ────────────────────────────────────── */
-/* Canvas drawn inside card (borderOffset=0), keep overflow for
-   the video scale clip. Canvas sits above overlay (z-index:5).  */
+/* borderOffset:0 → canvas exactly card-sized, so keep overflow:hidden
+   for the video scale-clip.  Glow + canvas sit above the video.    */
 .work-card.electric-border { overflow: hidden !important; }
+.work-card .eb-layers          { z-index: 6; }
 .work-card .eb-canvas-container { z-index: 8; }
-.work-card .eb-layers { z-index: 6; }
 
-/* No background glow on work-cards — keep the video visible */
+/* No ambient bloom on work-cards — let the video breathe */
 .work-card .eb-background-glow { display: none; }
 
-/* Glow layers use full opacity since they're inside the card */
+/* Slightly softer glow edges for the inner-border style */
 .work-card .eb-glow-1 {
   border-color: color-mix(in srgb, var(--electric-border-color, #81c4ff) 45%, transparent);
 }
@@ -85,7 +92,7 @@
   filter: blur(3px);
 }
 
-/* Fade in/out both canvas and glow layers on hover */
+/* Fade in/out the whole EB layer stack on hover */
 .work-card .eb-layers,
 .work-card .eb-canvas-container {
   opacity: 0;
