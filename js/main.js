@@ -615,4 +615,33 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   })();
 
+  /* --- 3D mouse-parallax depth on hero section --- */
+  (function () {
+    var hero = document.querySelector('.hero');
+    if (!hero) return;
+    var heroLeft  = hero.querySelector('.hero-left');
+    var heroRight = hero.querySelector('.hero-right');
+    var orbit     = hero.querySelector('.hero-3d-orbit');
+    if (!heroLeft || !heroRight) return;
+
+    var mx = 0, my = 0, tx = 0, ty = 0;
+
+    hero.addEventListener('mousemove', function (e) {
+      var r  = hero.getBoundingClientRect();
+      mx = (e.clientX - r.left  - r.width  / 2) / (r.width  / 2);
+      my = (e.clientY - r.top   - r.height / 2) / (r.height / 2);
+    });
+    hero.addEventListener('mouseleave', function () { mx = 0; my = 0; });
+
+    (function parallaxTick() {
+      tx += (mx - tx) * 0.08;
+      ty += (my - ty) * 0.08;
+      var rotX =  ty * 6;
+      var rotY = -tx * 8;
+      heroLeft.style.transform  = 'perspective(1400px) rotateX(' + (rotX * 0.4) + 'deg) rotateY(' + (rotY * 0.4) + 'deg)';
+      if (orbit) orbit.style.transform = 'perspective(900px) translateY(-50%) rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg)';
+      requestAnimationFrame(parallaxTick);
+    })();
+  })();
+
 });

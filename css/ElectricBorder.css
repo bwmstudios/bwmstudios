@@ -62,13 +62,6 @@
   );
 }
 
-/* Raise existing children above the z-index:0 glow layers so they
-   are never obscured by the border/glow fills.
-   Exclude the injected EB elements themselves.                */
-.electric-border > *:not(.eb-canvas-container):not(.eb-layers) {
-  position: relative;
-  z-index: 1;
-}
 
 /* Disable the old holo-glow on the featured package card — replaced */
 .pkg-featured.electric-border { animation: none; box-shadow: none; }

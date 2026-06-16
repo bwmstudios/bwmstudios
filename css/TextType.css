@@ -19,18 +19,12 @@
   to   { opacity: 0; }
 }
 
-/* When TextType is inside .h1-accent the content span must inherit
-   the gradient background-clip so the text stays gradient-coloured  */
-.h1-accent .text-type__content {
-  background: inherit;
-  background-size: inherit;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+/* .h1-accent uses background-clip:text on the PARENT element.
+   The gradient shows through child spans automatically because they
+   inherit -webkit-text-fill-color:transparent. Adding a competing
+   background on the child span breaks the gradient — leave it alone. */
 
-/* Cursor matches amber accent colour (not gradient — gradient on a
-   single-char cursor looks odd); sits outside the clip region     */
+/* Cursor: reset the inherited transparent fill so it renders solid */
 .h1-accent-cursor {
   -webkit-text-fill-color: initial;
   color: #81c4ff;
